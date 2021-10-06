@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <title>Formulario</title>
+   </head>
+   <body>
+      <h1>
+         Responda as questões a seguir, atente-se ao fato de cada uma possuir uma resposta única.
+      </h1>
+      <form action="/pagina-processa-dados-do-form">
+         <div>
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" />
+         </div>
+
+         <hr />
+
+         <div>
+            <p>Qual linguagem dentre estas você prefere:</p>
+            <input type="radio" id="html" name="lingfav" value="HTML" />
+            <label for="html">HTML</label><br />
+            <input type="radio" id="css" name="lingfav" value="CSS" />
+            <label for="css">CSS</label><br />
+            <input type="radio" id="javascript" name="lingfav" value="JavaScript" />
+            <label for="javascript">JavaScript</label><br />
+            <input type="radio" id="php" name="lingfav" value="PHP" />
+            <label for="php">PHP</label><br />
+            <input type="radio" id="python" name="lingfav" value="Python" />
+            <label for="python">Python</label><br />
+         </div>
+
+         <hr />
+
+         <div>
+            <p>Qual sua altura?</p>
+            <input type="radio" id="alt1" name="altura" value="1.0" />
+            <label for="alt1">menor que 1.0m</label><br />
+            <input type="radio" id="alt2" name="altura" value="1.5" />
+            <label for="alt2">entre 1.0m e 1.5m</label><br />
+            <input type="radio" id="alt3" name="altura" value="2.0" />
+            <label for="alt3">entre 1.5m e 2.0m</label><br />
+            <input type="radio" id="alt4" name="altura" value="2.5" />
+            <label for="alt4">maior que 2.0m</label><br />
+         </div>
+
+         <hr />
+
+         <div>
+            <p>Qual sua idade em anos?</p>
+            <input type="radio" id="idade1" name="idade" value="25" />
+            <label for="idade1">0 - 25</label><br />
+            <input type="radio" id="idade2" name="idade" value="50" />
+            <label for="idade2">25 - 50</label><br />
+            <input type="radio" id="idade3" name="idade" value="75" />
+            <label for="idade3">50 - 75</label><br />
+            <input type="radio" id="idade4" name="idade" value="100" />
+            <label for="idade4">75 - 100</label><br />
+            <input type="radio" id="idade5" name="idade" value="101" />
+            <label for="idade5">mais de 100</label><br />
+         </div>
+     </form>
+   </body>
+</html>
