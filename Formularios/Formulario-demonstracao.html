@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="uft-8">
+      <title>Alguns elementos de formulários HTML</title>
+   </head>
+   <body>
+      <h1>
+         Formulário incrível
+      </h1>
+      <form>
+         <div>
+            <p>Exemplo do elemento <i>text</i></p>
+            <label for="texto">Escreva uma frase curta:</label>
+            <input type="text" id="texto" />
+         </div>
+
+         <hr />
+
+         <div>
+            <p>Exemplo do elemento <i>password</i></p>
+            <label for="senha">Escreva sua senha:</label>
+            <input type="password" maxlength="8" id="senha" />
+         </div>
+
+         <hr />
+
+         <div>
+            <p>Exemplo do elemento <i>date</i></p>
+            <label for="data">Escolha a data:</label>
+            <input type="date" id="data" />
+         </div>
+
+         <hr />
+
+         <div>
+            <p>Exemplo do elemento <i>radio</i></p>
+            <p>O que você prefere em um dia quente?</p>
+            <input type="radio" id="sucolaranja" name="bebida" value="SucoLaranja" />
+            <label for="sucolaranja">Suco de laranja</label><br />
+            <input type="radio" id="agua" name="bebida" value="Agua" />
+            <label for="agua">Água geladinha</label><br />
+         </div>
+
+         <hr />
+
+         <div>
+            <p>Exemplo do elemento <i>checkbox</i></p>
+            <p>O que você vai fazer após este formidável formulário?</p>
+            <input type="checkbox" id="estudar" name="acao" value="Estudar" />
+            <label for="estudar">Vou estudar</label><br />
+            <input type="checkbox" id="cuidarvida" name="acao" value="CuidarVida" />
+            <label for="cuidarvida">Vou trabalhar</label><br />
+            <input type="checkbox" id="relaxar" name="acao" value="Relaxar" />
+            <label for="relaxar">Vou relaxar</label><br />
+            <input type="checkbox" id="arrumarcasa" name="acao" value="ArrumarCasa" />
+            <label for="arrumarcasa">Vou arrumar minha casa</label><br />
+         </div>
+
+         <hr />
+
+         <div>
+            <p>Exemplo do elemento <i>range</i></p>
+            <label for="send">Barrinha:</label>
+            <input type="range" min="0" max="500" id="send" oninput="result.value=send.value"/><br />
+            <label for="result">Seu valor:</label>
+            <input type="text" id="result" value="250" />
+         </div>
+
+         <hr />
+
+         <div>
+            <p>Exemplo do elemento <i>reset</i></p>
+            <input type="reset" value="Reiniciar"/>
+         </div>
+         
+         <hr />
+
+         <div>
+            <p>Exemplo do elemento <i>submit</i></p>
+            <input type="submit" value="Enviar" onclick="alert('Infelizmente ainda não sei fazer isso :(')"/>
+         </div>
+      </form>
+   </body>
+</html>
