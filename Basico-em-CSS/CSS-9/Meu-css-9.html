@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8"/>
+      <title>Direcoes</title>
+      <style>
+         main {
+            display: flex;
+            flex-direction: row;
+         }
+
+         h1 {
+            text-align: center;
+         }
+         
+         .horizontal1 {
+         writing-mode: horizontal-tb;
+         }
+
+         .vertical1 {
+         writing-mode: vertical-rl;
+         margin: 35px 0px 0px 0px;
+         }
+
+         .horizontal2 {
+         display: flex;
+         align-items: flex-end;
+         margin: 45px 0px 0px 0px;
+         }
+
+         .vertical2 {
+            display: flex;
+            align-items: flex-start;
+            justify-items: flex-start;
+            transform: rotate(270deg);
+            margin: 140px 0px 0px 0px;
+         }
+      </style>
+   </head>
+   <body>
+      <h1>
+         Um pequeno poema
+      </h1>
+      <hr />
+      <main>
+         <p class="horizontal1">
+            A meta é fazer com que contrariedades,
+         </p>
+         <p class="vertical1">
+            dificuldades percalços, erros, falhas e tudo que se interpõe no caminho
+         </p>
+         <p class="horizontal2">
+            se torne parte da mola impulsionadora do nosso crescimento,
+         </p>
+         <p class="vertical2">
+            realização e sucesso contínuo. <i>Por: <a href="https://www.instagram.com/poema.concreto/" target="_blank">@poema.concreto</a></i>
+         </p>
+      </main>
+   </body>
+</html>
