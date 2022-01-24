@@ -1,0 +1,90 @@
+[
+      {
+            "registrationNumber": "001",
+            "name": "Fulano",
+            "branche": "267",
+            "email": "fulano@mail.com",
+            "sector": "cleaning",
+            "birthday": "01/02/1997"
+      },
+      {
+            "registrationNumber": "002",
+            "name": "Sicrano",
+            "branche": "268",
+            "email": "sicrano@mail.com",
+            "sector": "administrative",
+            "birthday": "12/06/2001"
+      },
+      {
+            "registrationNumber": "003",
+            "name": "Beltrano",
+            "branche": "269",
+            "email": "beltrano@mail.com",
+            "sector": "rh",
+            "birthday": "25/08/1999"
+      },
+      {
+            "registrationNumber": "004",
+            "name": "Carlos",
+            "branche": "258",
+            "email": "carlos@mail.com",
+            "sector": "cleaning",
+            "birthday": "14/08/2000"
+      },
+      {
+            "registrationNumber": "005",
+            "name": "Jose",
+            "branche": "247",
+            "email": "jose@mail.com",
+            "sector": "rh",
+            "birthday": "23/02/1998"
+      },
+      {
+            "registrationNumber": "006",
+            "name": "test",
+            "branche": "222",
+            "email": "test",
+            "sector": "test",
+            "birthday": "11/11/1111"
+      },
+      {
+            "registrationNumber": "007",
+            "name": "test2",
+            "branche": "223",
+            "email": "test2",
+            "sector": "test2",
+            "birthday": "22/02/0001"
+      },
+      {
+            "registrationNumber": "008",
+            "name": "test3",
+            "branche": "test3",
+            "email": "test3",
+            "sector": "test3",
+            "birthday": "08/08/1998"
+      },
+      {
+            "registrationNumber": "009",
+            "name": "Luan",
+            "branche": "678",
+            "email": "luan@mail.com",
+            "sector": "webdeveloper",
+            "birthday": "20/06/2000"
+      },
+      {
+            "registrationNumber": "010",
+            "name": "Raabe",
+            "branche": "347",
+            "email": "raabe@mail.com",
+            "sector": "backend",
+            "birthday": "21/07/2001"
+      },
+      {
+            "registrationNumber": "011",
+            "name": "pereira",
+            "branche": "687",
+            "email": "pereira@mail.com",
+            "sector": "frontend",
+            "birthday": "19/05/1999"
+      }
+]
