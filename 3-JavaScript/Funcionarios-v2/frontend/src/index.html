@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Consulta base de dados</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <main>
+        <h1>Buscando por pessoas</h1>
+        <h2>Pesquisa por aniversário, setor ou ramal</h2>
+        <select name="what" id="what">
+            <option value="searchFunc" select>Procurando por funcionário</option>
+            <option value="addFunc">Adicionando funcionário</option>
+        </select>
+        <div id="interactionBlock">
+            <form id="requestUser">
+                <input type="text" id="info" placeholder="Digite aqui..." />
+                <select name="typeOfInfo" id="typeOfInfo">
+                    <option disabled selected value="">--Selecione um--</option>
+                    <option value="birthday">Aniversário</option>
+                    <option value="sector">Setor</option>
+                    <option value="extension">Ramal</option>
+                </select>
+                <input type="button" id="button" onclick="search()" value="Consultar" />
+            </form>
+            <form id="addUser">
+                <input type="text" id="registrationNumber" placeholder="N° registro" />
+                <input type="text" id="name" placeholder="Nome" />
+                <input type="text" id="extension" placeholder="Ramal" />
+                <input type="text" id="email" placeholder="Email" />
+                <input type="text" id="sector" placeholder="Sector" />
+                <input type="date" id="birthday" placeholder="Data de aniversário" />
+                <input type="button" id="button" onclick="addUser()" value="Adicionar" />
+            </form>
+        </div>
+        <div class="line">
+            <div id="lineInfo">INFORMAÇÔES</div>
+        </div>
+        <div id="result"></div>
+    </main>
+    <script type="text/javascript" src="main.js"></script>
+</body>
+
+</html>
