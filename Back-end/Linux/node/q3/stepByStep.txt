@@ -1,0 +1,25 @@
+cd /usr/local/lib/nodejs/node-$VERSION-$DISTRO
+sudo mkdir html
+cd html
+sudo nano index.html
+ESCREVA SEU HTML >> ctrl X >> Y >> enter
+sudo nano app.js
+
+ESCREVA:
+
+var fs = require('fs'),
+    http = require('http');
+
+http.createServer(function (req, res) {
+  fs.readFile(__dirname + req.url, function (err,data) {
+    if (err) {
+      res.writeHead(404);
+      res.end(JSON.stringify(err));
+      return;
+    }
+    res.writeHead(200);
+    res.end(data);
+  });
+}).listen(8080);
+
+FIMESCREVA >> ctrl X >> Y >> enter

@@ -1,0 +1,15 @@
+
+app.get('/users/id=*', (req, res) => {
+    console.log(req.params);
+    res.send(req.params["0"]);
+})
+
+app.get('/users/name=*', (req, res) => {
+    console.log(req.params);
+    res.send(req.params["0"]);
+})
+
+app.get('/users/email=*', (req, res) => {
+    console.log(req.params);
+    res.send(req.params["0"]);
+})

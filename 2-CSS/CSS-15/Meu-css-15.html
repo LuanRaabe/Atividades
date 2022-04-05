@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta charset="uft-8" />
+   <title>Facebonk</title>
+   <style>
+      html {
+         background-color: rgb(24, 25, 26);
+      }
+
+      .screen {
+         display: flex;
+         flex-direction: row;
+      }
+
+      header {
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         margin: 0em 0em 2em 0em;
+      }
+
+      header>img {
+         width: 90%;
+         height: 90%;
+         margin: 2em;
+         border-radius: 1em;
+      }
+
+      main {
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         height: 40em;
+         overflow-y: scroll;
+         border-radius: 1em;
+      }
+
+      main>video {
+         padding: 4em;
+         background-color: rgb(36, 37, 38);
+         width: 30em;
+         height: 30em;
+      }
+
+      .content {
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+      }
+
+      section {
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+      }
+
+      .stories {
+         display: flex;
+         flex-direction: row;
+         width: 30em;
+         height: 20em;
+         overflow-x: scroll;
+         border-radius: 1em;
+      }
+
+      .stories>video {
+         width: 15em;
+         height: 15em;
+         padding: 1.9em;
+         background-color: rgb(36, 37, 38);
+      }
+
+      nav {
+         display: flex;
+         flex-direction: column;
+         width: 20em;
+      }
+
+      h3 {
+         color: white;
+      }
+
+      a {
+         text-decoration: none;
+         color: white;
+         padding: 1em;
+         border: solid;
+         border-radius: 1em;
+         margin: 0.1em;
+         background-color: rgb(21, 137, 141);
+      }
+
+      .amigos {
+         color: white;
+      }
+
+      ::-webkit-scrollbar {
+         width: 0px;
+      }
+
+      ::-webkit-scrollbar-track-piece {
+         background-color: transparent;
+         -webkit-border-radius: 6px;
+      }
+   </style>
+</head>
+
+<body>
+   <div class="screen">
+      <nav>
+         <h3>
+            Navegação
+         </h3>
+         <a href="https://luanraabe.github.io/Basico-em-CSS/CSS-7/Meu-css-7.html" target="_blank">Querido diário</a>
+         <a href="https://luanraabe.github.io/Basico-em-CSS/CSS-8/Meu-css-8.html" target="_blank">Sistema solar</a>
+         <a href="https://luanraabe.github.io/Basico-em-CSS/CSS-12/Meu-css-12.html" target="_blank">Receita de Farfalle
+            brócólis cremoso</a>
+         <a href="https://luanraabe.github.io/Basico-em-CSS/CSS-3/Meu-css-3.html" target="_blank">Receita de
+            carbonara</a>
+         <a href="https://luanraabe.github.io/Meu-canvas/Meu-canvas.html" target="_blank">Lousinha</a>
+         <a href="https://luanraabe.github.io/Basico-em-CSS/CSS-9/Meu-css-9.html" target="_blank">Pequeno poema</a>
+      </nav>
+      <div class="content">
+         <header>
+            <img src="images/facebonk.png" title="Facebonk" alt="Facebonk" />
+         </header>
+         <section>
+            <div class="stories">
+               <video controls>
+                  <source src="video/tutel.mp4" />
+                  Video element not suported by your browser
+               </video>
+               <video controls>
+                  <source src="video/tutel-dancing.mp4" />
+                  Video element not suported by your browser
+               </video>
+               <video controls>
+                  <source src="video/cattel.mp4" />
+                  Video element not suported by your browser
+               </video>
+               <video controls>
+                  <source src="video/planetas.mp4" />
+                  Video element not suported by your browser
+               </video>
+               <video controls>
+                  <source src="video/violao.mp4" />
+                  Video element not suported by your browser
+               </video>
+               <video controls>
+                  <source src="video/Nao-posso-falar-muito.mp4" />
+                  Video element not suported by your browser
+               </video>
+               <video controls>
+                  <source src="video/cavaco-EAD.mp4" />
+                  Video element not suported by your browser
+               </video>
+            </div>
+            <main>
+               <video controls>
+                  <source src="video/tutel.mp4" />
+                  Video element not suported by your browser
+               </video>
+               <video controls>
+                  <source src="video/tutel-dancing.mp4" />
+                  Video element not suported by your browser
+               </video>
+               <video controls>
+                  <source src="video/cattel.mp4" />
+                  Video element not suported by your browser
+               </video>
+               <video controls>
+                  <source src="video/planetas.mp4" />
+                  Video element not suported by your browser
+               </video>
+               <video controls>
+                  <source src="video/violao.mp4" />
+                  Video element not suported by your browser
+               </video>
+               <video controls>
+                  <source src="video/Nao-posso-falar-muito.mp4" />
+                  Video element not suported by your browser
+               </video>
+               <video controls>
+                  <source src="video/cavaco-EAD.mp4" />
+                  Video element not suported by your browser
+               </video>
+            </main>
+         </section>
+      </div>
+      <div class="amigos">
+         <p>
+            Seus amigos aparecerão aqui no futuro :)
+         </p>
+      </div>
+   </div>
+</body>
+
+</html>

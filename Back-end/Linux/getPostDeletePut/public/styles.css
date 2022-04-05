@@ -1,0 +1,61 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form {
+    width: 60vw;
+    margin: 10vh 0;
+}
+
+form * {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 4px;
+}
+
+#what {
+    margin-bottom: 5vh;
+}
+
+#consult-delete {
+    display: flex;
+}
+
+#insert, #update {
+    display: none;
+}
+
+#result {
+    background-color: #eee;
+    width: 44vw;
+    height: 54vh;
+    padding: 2vh 2vw;
+    border-radius: 20px;
+}
+
+.line {
+    display: flex;
+    flex-direction: row;
+    margin: 1vh 0;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.line * {
+    margin-right: 3vw;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.line-id, .line-name {
+    background-color: #ccc;
+}

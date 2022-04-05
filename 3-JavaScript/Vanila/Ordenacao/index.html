@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta property="og:title" content="Ordene os números" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://luanraabe.github.io/3-JavaScript/Ordenacao/index.html" />
+    <meta property="og:description" content="Vamos ordenar uns numeros aí" />
+    <meta property="og:image" itemprop="image" content="https://luanraabe.github.io/3-JavaScript/Ordenacao/images/" />
+    <meta property="og:image:type" content="image/jpg" />
+    <meta property="og:image:width" content="256" />
+    <meta property="og:image:height" content="256" />
+    <title>Ordem!!!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Ubuntu+Condensed&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div id="screen">
+        <div id="saved">
+            <div class="title">Números salvos na memória:</div>
+            <div id="contentSaved"></div>
+        </div>
+        <div id="ordened">
+            <div class="title">Ordem deles no momento:</div>
+            <div id="contentOrdened"></div>
+        </div>
+    </div>
+    <header>Ordenar quatro números</header>
+    <div id="subHeader">Aqui vocês pode ordenar quatro números a sua vontade</div>
+    <main>
+        <section id="select">
+            <div id="inputNumbers">
+                <input type="number" step="1" id="number1">
+                <input type="number" step="1" id="number2">
+                <input type="number" step="1" id="number3">
+                <input type="number" step="1" id="number4">
+            </div>
+            <div id="options">
+                <input type="button" id="save" onclick="save()" value="Salvar">
+                <input type="button" id="reverseOrder" onclick="reverseOrder()" value="Ordem reversa">
+                <input type="button" id="ascendingOrder" onclick="ascendingOrder()" value="Ordem crescente">
+            </div>
+        </section>
+    </main>
+    <script type="text/javascript" src="scripts.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Pesquisa por CEP</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Condensed&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body>
+    <div id="all-info">
+        <div id="search">
+            <input type="text" id="cep" placeholder="CEP">
+            <input type="button" id="consult" value="Consultar">
+        </div>
+        <div id="address">
+            <table>
+                <tr>
+                    <td>Rua:</td><td><span class="addressInfo" id="fullAddress"></span></td>
+                </tr>
+                <tr>
+                    <td>Bairro:</td><td><span class="addressInfo" id="district"></span></td>
+                </tr>
+                <tr>
+                    <td>Cidade:</td><td><span class="addressInfo" id="city"></span></td>
+                </tr>
+                <tr>
+                    <td>Estado:</td><td><span class="addressInfo" id="state"></span></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div id="iframe-here"><span id="placeholder">Seu mapa aparecerar aqui :)</span></div>
+    <script type="text/javascript" src="scripts.js"></script>
+</body>
+
+</html>

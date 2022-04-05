@@ -1,0 +1,31 @@
+$ sudo apt install vsftpd
+$ sudo cp /etc/vsftpd.conf /etc/vsftpd.conf.orig
+$ sudo ufw allow 20/tcp
+$ sudo ufw allow 21/tcp
+$ sudo ufw allow 990/tcp
+$ sudo ufw allow 40000:50000/tcp
+$ sudo mkdir /web/nginx/html
+$ sudo chown nobody:nogroup /web/nginx/html
+$ sudo chown luanraabe:luanraabe /web/nginx/html/pages
+$ echo "vsftpd test file" | sudo tee /web/nginx/html/test.txt
+$ sudo nano /etc/vsftpd.conf
+
+DESCOMENTA:
+
+write_enable=YES
+chroot_local_user=YES
+
+ESCREVE NO FIM DO DOCUMENTO:
+
+user_sub_token=$USER
+local_root=/web/nginx/html/pages
+pasv_min_port=40000
+pasv_max_port=50000
+userlist_enable=YES
+userlist_file=/etc/vsftpd.userlist
+userlist_deny=NO
+
+$ sudo echo "luanraabe" | sudo tee -a /etc/vsftpd.userlist
+$ sudo systemctl restart vsftpd
+
+$ sudo service nginx restart

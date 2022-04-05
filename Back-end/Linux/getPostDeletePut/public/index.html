@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8" />
+    <title>API RESTful</title>
+    <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+    <form>
+        <select id="what">
+            <option value="consult-delete" selected>Consultar ou deletar</option>
+            <option value="insert">Inserir</option>
+            <option value="update">Atualizar</option>
+        </select>
+        <div id="consult-delete">
+            <input type="text" id="cons-del-id" placeholder="consultar/excluir por id" />
+            <input type="button" id="cons" value="Consultar" />
+            <input type="button" id="del" value="Deletar" />
+        </div>
+        <div id="insert">
+            <input type="text" id="insert-id" placeholder="inserir id" />
+            <input type="text" id="insert-name" placeholder="inserir nome" />
+            <input type="button" id="add" value="Adicionar" />
+        </div>
+        <div id="update">
+            <input type="text" id="update-id" placeholder="Id de origem" />
+            <input type="text" id="update-name" placeholder="Novo nome" />
+            <input type="button" id="upd" value="Atualizar" />
+        </div>
+    </form>
+    <div id="result"></div>
+    <script type="text/javascript" src="./scripts.js"></script>
+</body>
+
+</html>

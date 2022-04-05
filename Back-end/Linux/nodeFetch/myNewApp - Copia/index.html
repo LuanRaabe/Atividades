@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Consulta fetch</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+        }
+        main {
+            display: flex;
+            flex-direction: column;
+            width: 500px;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <h1>Busca de Pessoas</h1>
+        <h2>Digite o ID, nome ou email</h2>
+        <input type="text" id="info" placeholder="Nome, id ou email" />
+        <input type="button" onclick="searchById()" value="Consultar por id" />
+        <input type="button" onclick="searchByName()" value="Consultar por nome" />
+        <input type="button" onclick="searchByEmail()" value="Consultar por email" />
+        <div id="result"></div>
+    </main>
+    <script type="text/javascript">
+        let textinput = document.getElementById('info');
+        let result = document.getElementById('result');
+        let param = textinput.value;
+        console.log(param);
+
+        function searchById() {
+            param = 'id=' + textinput.value;
+            console.log(param);
+            if (param == 'id=') {
+                alert("Preciso de um numero inteiro");
+            } else {
+                sendParam(param);
+            }
+        }
+        function searchByName() {
+            param = 'name=' + textinput.value;
+            console.log(param);
+            if (param == 'name=') {
+                alert("Preciso de pelo menos 3 caracteres");
+            } else {
+                sendParam(param);
+            }
+        }
+        function searchByEmail() {
+            param = 'mail=' + textinput.value;
+            console.log(param);
+            if (param == 'mail=') {
+                alert("Preciso de um email");
+            } else {
+                sendParam(param);
+            }
+        }
+
+        function reqListener(data) {
+            result.innerHTML = data;
+        };
+
+        function sendParam(param) {
+            fetch(param)
+                .then(
+                    function (response) {
+                        if (response.status !== 200) {
+                            console.log('Looks like there was a problem. Status Code: ' + response.status);
+                            return;
+                        }
+                        response.json().then(function (data) {
+                            reqListener(data.name + "  " + data.email);
+                            console.log(data);
+                        });
+                    }
+                )
+                .catch(function (err) {
+                    console.log('Fetch Error :-S', err);
+                });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta property="og:title" content="Jurinhos" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://luanraabe.github.io/3-JavaScript/Juros/index.html" />
+    <meta property="og:description" content="Olha que sai caro" />
+    <meta property="og:image" itemprop="image"
+        content="https://luanraabe.github.io/3-JavaScript/Carrinho/images/speed.png" />
+    <meta property="og:image:type" content="image/jpg" />
+    <meta property="og:image:width" content="256" />
+    <meta property="og:image:height" content="256" />
+    <title>Calculadora de juros</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Ubuntu+Condensed&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <main>
+        <h1>Calculadora de Juros</h1>
+        <form class="form" id="dataForm">
+            <input id="name" type="name" placeholder="Nome do cliente">
+            <input id="date" type="date">
+            <input id="valor" type="number" placeholder="valor do dividendo">
+            <input type="button" onclick="addInfo()" value="Adicionar">
+            <input type="button" onclick="calcDebt()" value="Calcular juros">
+        </form>
+        <form class="form">
+            <input type="button" onclick="groupDate()" value="Agrupar por data">
+            <input type="button" onclick="totalPerClient()" value="Agrupar por cliente">
+            <input type="button" onclick="addSomeClients()" value="Adicionar clientes ficticios">
+        </form>
+        <div class="table">
+            <div id="dataHeader">
+                <div class="line">
+                    <div>Nome</div>
+                    <div>Vencimento</div>
+                    <div>Valor</div>
+                    <div>Dias passados</div>
+                    <div>Juros</div>
+                </div>
+            </div>
+            <div id="dataClients"></div>
+        </div>
+        <div class="line table" id="totals">
+            <div id="totalAll">Total</div>
+            <div>Total original</div>
+            <div id="totalOriginal"></div>
+            <div>Total com juros</div>
+            <div id="totalWDebts"></div>
+        </div>
+        <form class="form">
+            <input id="dateMax" type="date" placeholder="dataMax">
+            <input id="dateMin" type="date" placeholder="dataMin">
+            <input type="button" onclick="filterDate()" value="Filtrar datas">
+            <input id="valueMax" type="number" placeholder="valor do máximo">
+            <input id="valueMin" type="number" placeholder="valor do mínimo">
+            <input type="button" onclick="filterValue()" value="Filtrar valores">
+        </form>
+    </main>
+    <i id="drop" class="fas fa-caret-down" onclick="dropBox('instructions')"></i>
+    <section id="instructions">
+        <h3>1 - Adicionar novo usuário</h3>
+        <p>Para adicionar um novo cliente à lista, escreva seu nome no campo "Nome do cliente", a data de vencimento da
+            nota no campo de data e o valor do dividendo no campo "valor do divicendo", em seguida, precione "adicionar"
+            para mostra-lo na tabela abaixo</p>
+        <h3>2 - Calcular juros</h3>
+        <p>Após ter adicionado todos as informações de clientes necessárias, precione calcular juros para averiguar
+            todas as dívidas e suas correções</p>
+        <h3>3 - Agrupar por cliente ou data</h3>
+        <p>Estas opções lhe darão uma melhor visualização das dívidas as organizando por data de vencimento ou
+            alfabética</p>
+        <h3>4 - Após agupar por cliente</h3>
+        <p>Clique em "Total por cliente" para ver uma forma resumida dos dados por nome de cliente</p>
+    </section>
+    <script type="text/javascript" src="scripts.js"></script>
+</body>
+
+</html>

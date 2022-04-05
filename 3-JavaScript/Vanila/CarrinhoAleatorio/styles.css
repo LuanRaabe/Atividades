@@ -1,0 +1,64 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Ubuntu Condensed', sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 60px 0;
+  background-color: #eee;
+}
+
+header {
+  font-size: 40px;
+}
+
+header, #subHeader {
+  margin-bottom: 20px;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+section {
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 10px;
+  margin: 0 10px;
+}
+
+#runers {
+  line-height: 28px;
+}
+
+#runs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 200px;
+}
+
+#lapsInRun, #lapWinner {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+}
+
+#lapWinner {
+  text-align: right;
+}
+
+#runWinner {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}

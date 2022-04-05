@@ -1,0 +1,5 @@
+echo "Vamos calcular seu IMC"
+read -p "Seu peso em quilos (ex. 70.50): " peso
+read -p "Sua altura em metros (ex. 1.85): " altura
+imc=`echo "scale=2; $peso/($altura/$altura)" | bc`
+echo "Seu IMC eh: $imc"

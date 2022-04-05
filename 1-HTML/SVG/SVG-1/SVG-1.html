@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Meu SVG</title>
+      <meta charset="uft-8" />
+   </head>
+   <body>
+      <h1>
+         Meu primeiro desenho com SVG
+      </h1>
+      <svg style="background-color: brown;" width="1000" height="1000">
+         <circle cx="200" cy="200" r="150" fill="red" />
+         <rect width="300" height="150" x="50" y="200" fill="white" />
+         <line x1="50" y1="200" x2="350" y2="200" style="stroke:black; stroke-linecap: round; stroke-width:10" />
+         <circle cx="200" cy="200" r="150" stroke="black" stroke-width="10" fill="none" />
+         <circle cx="200" cy="200" r="40" fill="black" />
+         <circle cx="200" cy="200" r="25" fill="white" />
+         <ellipse cx="600" cy="250" rx="140" ry="130" fill="yellow" />
+         <ellipse cx="600" cy="300" rx="140" ry="110" fill="yellow" />
+         <g transform="translate(600,250),rotate(45)">
+            <ellipse cx="-200" cy="0" rx="100" ry="50" fill="yellow" />
+         </g>
+         <g transform="translate(600,250),rotate(135)">
+            <ellipse cx="-200" cy="0" rx="100" ry="50" fill="yellow" />
+         </g>
+         <g transform="translate(600,250)">
+            <circle cx="-70" cy="-15" r="35" fill="black" />
+            <circle cx="70" cy="-15" r="35" fill="black" />
+            <ellipse cx="-65" cy="-25" rx="15" ry="20" fill="white" />
+            <ellipse cx="65" cy="-25" rx="15" ry="20" fill="white" />
+            <path d="M -100 50
+                     A 40 40 0 0 0 0 50
+                     A 40 40 0 0 0 100 50" 
+                     stroke="black" stroke-whidth="20px" fill="none" />
+         </g>
+      </svg>
+   </body>
+</html>

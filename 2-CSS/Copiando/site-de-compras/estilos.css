@@ -1,0 +1,644 @@
+* {
+   box-sizing: border-box;
+}
+
+body {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   margin: 0;
+   padding: 0;
+}
+
+.bar-section {
+   cursor: pointer;
+}
+
+#section1:checked ~ #homepage {
+   display: flex;
+}
+
+#section1:checked ~ #store, #section1:checked ~ #about-us, #section1:checked ~ #contact {
+   display: none;
+}
+
+#section2:checked ~ #store {
+   display: flex;
+}
+
+#section2:checked ~ #about-us, #section2:checked ~ #homepage, #section2:checked ~ #contact {
+   display: none;
+}
+
+#section3:checked ~ #about-us {
+   display: flex;
+}
+
+#section3:checked ~ #contact, #section3:checked ~ #homepage, #section3:checked ~ #store {
+   display: none;
+}
+
+#section4:checked ~ #contact {
+   display: flex;
+}
+
+#section4:checked ~ #homepage, #section4:checked ~ #about-us, #section4:checked ~ #store {
+   display: none;
+}
+
+#site {
+   width: 58.8em;
+}
+
+#bar {
+   margin: 2.8em 0 3.1em 0;
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   align-items: center;
+   justify-content: space-between;
+}
+
+#bar nav {
+   font-family: 'Open Sans Condensed', sans-serif;
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   align-items: center;
+   justify-content: space-between;
+   width: 34em;
+   text-align: center;
+}
+
+nav div {
+   cursor: pointer;
+}
+
+#blue {
+   color: #52a5de;
+}
+
+#red {
+   color: #e85b59;
+}
+
+header {
+   font-family: 'Open Sans', sans-serif;
+   font-size: 1.7em;
+   font-weight: 700;
+   color: #454545;
+}
+
+#homepage {
+   font-family: 'Open Sans', sans-serif;
+   color: #414114;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-between;
+   margin-bottom: 61.4px;
+}
+
+.carousel {
+   width: 602px;
+   height: 620px;
+   overflow: hidden;
+   position: relative;
+}
+
+.navigation {
+   position: absolute;
+   bottom: 20px;
+   left: 50%;
+   transform: translate(-50%);
+   display: flex;
+}
+
+.bar {
+   width: 8px;
+   height: 8px;
+   border-radius: 5px;
+   background-color: #ffffff99;
+   margin: 10px;
+   cursor: pointer;
+   transition: 0.8s;
+}
+
+.bar:hover {
+   background-color: #ffffff;
+}
+
+input[type="radio"] {
+   display: none;
+}
+
+.slides {
+   display: flex;
+   width: 200%;
+   height: 100%;
+}
+
+.slide {
+   width: 50%;
+   transition: 0.6s;
+}
+
+#slide1:checked ~ .s1 {
+   margin-left: 0;
+}
+
+#slide2:checked ~ .s1 {
+   margin-left: -50%;
+}
+
+#image1, #image2 {
+   width: 602px;
+   height: 620px;
+}
+
+#image1 {
+   background-image: url(images/bebe-home.webp);
+   color: #414141;
+}
+
+#image2 {
+   background-image: url(images/trem-home.webp);
+   color: #414141;
+}
+
+#font1 {
+   margin: 150px 0 0 75px;
+   font-size: 80px;
+   font-weight: 700;
+}
+
+#font2 {
+   margin: 15px 0 0 75px;
+}
+
+#line-1 {
+   display: flex;
+   flex-direction: column;
+   margin-bottom: 20.8px;
+}
+
+.slide .button-red {
+   margin: 10px 0 0 75px;
+   background-color: transparent;
+   border: solid 2px;
+   padding: 0.7em 1em;
+   border-radius: 2em;
+   color: #f55c4a;
+   cursor: pointer;
+}
+
+#about-image {
+   font-size: 30px;
+   font-weight: 600;
+   padding-left: 1em;
+   padding-top: 0.5em;
+   background-image: url('images/mao-blocos.webp');
+   width: 318px;
+   height: 300px;
+   margin-bottom: 20.8px;
+}
+
+#about-image button {
+   font-weight: 700;
+   background-color: transparent;
+   color: #47a5de;
+   border: solid 2px #47a5de;
+   border-radius: 2em;
+   padding: 0.7em 1em;
+   cursor: pointer;
+}
+
+#ad-product-snap-blocks {
+   width: 318px;
+   height: 300px;
+   cursor: pointer;
+}
+
+#line-2 {
+   display: flex;
+   flex-direction: row;
+   width: 940.8px;
+   margin-bottom: 20.8px;
+}
+
+#ad-product-train {
+   width: 318px;
+   height: 400px;
+   margin-right: 20.8px;
+   cursor: pointer;
+}
+
+#ad-discount {
+   font-size: 30px;
+   font-weight: 600;
+   padding-left: 1em;
+   padding-top: 0.5em;
+   background-image: url('images/bebe-blocos.webp');
+   width: 602px;
+   height: 400px;
+}
+
+#ad-discount button {
+   font-weight: 700;
+   background-color: transparent;
+   color: #47a5de;
+   border: solid 2px #47a5de;
+   border-radius: 2em;
+   padding: 0.7em 1em;
+   cursor: pointer;
+}
+
+#new {
+   width: 940.8px;
+   font-size: 3em;
+   font-weight: 700;
+   text-align: center;
+   color: #47a5de;
+   letter-spacing: 0.005em;
+   margin: 1em 0 2em 0;
+}
+
+#line-3 {
+   display: flex;
+   flex-direction: row;
+   width: 940.8px;
+   justify-content: space-between;
+   text-align: center;
+}
+
+#line-3 div div {
+   font-weight: 600;
+}
+
+.gray {
+   color: #666666;
+}
+
+.add-cart {
+   visibility: hidden;
+}
+
+
+#ad-toy-car {
+   width: 300px;
+   height: 375px;
+   transition: 0.8s ease;
+   cursor: pointer;
+   position: relative;
+}
+
+#ad-toy-car .price {
+   margin-top: 20px;
+}
+
+#ad-toy-car:hover {
+   background-color: #47a0dc99;
+}
+
+#ad-toy-car .add-cart {
+   position: absolute;
+   bottom: 20px;
+   left: 50px;
+}
+
+#ad-toy-car:hover div  {
+   visibility: hidden;
+}
+
+#ad-toy-car:hover .add-cart {
+   visibility: visible;
+   transition: 0.8s ease;
+}
+
+
+#ad-toy-tools {
+   width: 300px;
+   height: 375px;
+   transition: 0.8s ease;
+   cursor: pointer;
+   position: relative;
+}
+
+#ad-toy-tools .price {
+   margin-top: 20px;
+}
+
+#ad-toy-tools:hover {
+   background-color: #9ebf1999;
+}
+
+#ad-toy-tools .add-cart {
+   position: absolute;
+   bottom: 20px;
+   left: 50px;
+}
+
+#ad-toy-tools:hover div {
+   visibility: hidden;
+}
+
+#ad-toy-tools:hover .add-cart {
+   visibility: visible;
+   transition: 0.8s ease;
+}
+
+
+#ad-toy-seesaw {
+   width: 300px;
+   height: 375px;
+   transition: 0.8s ease;
+   cursor: pointer;
+   position: relative;
+}
+
+#ad-toy-seesaw .price {
+   margin-top: 20px;
+}
+
+#ad-toy-seesaw:hover {
+   background-color: #f4c10399;
+}
+
+#ad-toy-seesaw .add-cart {
+   position: absolute;
+   bottom: 20px;
+   left: 50px;
+}
+
+#ad-toy-seesaw:hover div {
+   visibility: hidden;
+}
+
+#ad-toy-seesaw:hover .add-cart {
+   visibility: visible;
+   transition: 0.8s ease;
+}
+
+#line-3 button {
+   cursor: pointer;
+   background-color: transparent;
+   border: solid;
+   color: #f0f0f0;
+   border-color: currentColor;
+   padding: 1em;
+   width: 15em;
+   border-radius: 2em;
+}
+
+#store {
+   flex-direction: column;
+}
+
+#product-list {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-between;
+   margin-bottom: 20px;
+}
+
+.product {
+   width: 300px;
+   height: 365px;
+   text-align: center;
+   margin-bottom: 30px;
+}
+
+.product img {
+   width: 300px;
+   height: 300px;
+}
+
+.name-product {
+   font-family: 'Open Sans', sans-serif;
+   font-size: 20px;
+   font-weight: 700;
+   color: #414141;
+   margin-top: 10px;
+}
+
+.price-product {
+   font-family: 'Open Sans Condensed', sans-serif;
+   font-weight: 700;
+   color: #99a6c3;
+}
+
+#about-us {
+   flex-direction: column;
+   align-items: center;
+   margin-bottom: 6em;
+}
+
+.header-section {
+   display: flex;
+   margin-bottom: 6em;
+}
+
+.header-section img {
+   margin-left: 20.8px;
+}
+
+#paragraph {
+   font-family: 'Open Sans Condensed', sans-serif;
+   text-align: center;
+   width: 800px;
+   color: #414141;
+}
+
+.square-blue {   
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-family: 'Open Sans', sans-serif;
+   font-weight: 600;
+   font-size: 50px;
+   color: #ffffff;
+   background-color: #47a5de;
+   width: 298px;
+   height: 291px;
+}
+
+#about-us img {
+   width: 620px;
+   height: 291px;
+}
+
+#contact {
+   flex-direction: column;
+   align-items: center;
+   margin-bottom: 6em;
+}
+
+.red-text {
+   text-align: center;
+   font-family: 'Open Sans', sans-serif;
+   font-size: 20px;
+   font-weight: 500;
+   color: #f55c4a;
+}
+
+.description {
+   text-align: center;
+   font-family: 'Open Sans Condensed', sans-serif;
+   color: #414141;
+}
+
+#camp1 {
+   display: flex;
+   flex-direction: column;
+   margin-right: 80px;
+}
+
+#visit, #time {
+   width: 250px;
+   height: 150px;
+}
+
+#send #name, #send input[type="email"] {
+   width: 259px;
+   height: 40px;
+   margin: 5px;
+   border-style: none none solid none;
+}
+
+#assunto {
+   width: 529px;
+   height: 40px;
+   margin: 5px;
+   border-style: none none solid none;
+}
+
+#mensage {
+   width: 529px;
+   height: 113px;
+   margin: 5px;
+   border-style: none none solid none;
+   resize: none;
+}
+
+#no-back-button {
+   border: none;
+   background-color: transparent;
+   color: #f55c4a;
+   font-weight: 700;
+   cursor: pointer;
+}
+
+#no-back-button:hover {
+   color: #414141;
+}
+
+#stores .red-text {
+   margin-bottom: 50px;
+}
+
+#stores .description {
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+}
+
+#stores .description div{
+   width: 313.6px;
+   height: 150px;
+}
+
+#camp2 {
+   display: flex;
+   flex-direction: row;
+   margin-bottom: 100px;
+}
+
+.title {
+   font-weight: 600;
+   margin-bottom: 0.5em;
+}
+
+#contact-red {
+   font-family: 'Open Sans Condensed', sans-serif;
+   background-color: #f55c4a;
+   color: #f0f0f0;
+   display: flex;
+   flex-direction: column;
+   padding: 4.5em;
+}
+
+#top-list {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-around;
+}
+
+#top-list div {
+   margin-top: 0.5em;
+}
+
+#participe {
+   margin: 0 3em 0 2.5em;
+   display: flex;
+   flex-direction: row;
+   align-items: flex-end;
+   justify-content: space-between;
+}
+
+#participe input[type="email"] {
+   color: #ffffff;
+   background-color: transparent;
+   border: 1px solid #ffffff;
+   height: 3em;
+   width: 25em;
+}
+
+#participe input[type="email"]::-webkit-input-placeholder  { color:#ffffff; }
+
+#participe input[type="email"]:hover {
+   background-color: #f8aba2;
+   border: 3px solid #ffffff;
+}
+
+#participe button {
+   color: #f55c4a;
+   background-color: #ffffff;
+   height: 3em;
+   width: 8em;
+   border: none;
+   font-weight: 600;
+   cursor: pointer;
+}
+
+#participe button:hover {
+   color: #414141;
+}
+
+#invite {
+   margin-top: 3em;
+}
+
+#invite small {
+   letter-spacing: 0.1em;
+}
+
+#big {
+   font-size: 1.5em;
+   letter-spacing: 0.1em;
+}
+
+footer {
+   font-family: 'Open Sans', sans-serif;
+   letter-spacing: 0;
+   font-size: 0.8em;
+   text-align: center;
+   color: #666666;
+   margin: 1.5em 0;
+}
+
+#chat {
+   position: fixed;
+   right: 10px;
+   bottom: 10px;
+   cursor: pointer;
+}

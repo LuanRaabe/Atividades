@@ -1,0 +1,50 @@
+        body {
+            display: flex;
+            justify-content: center;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 800px;
+        }
+
+        #result {
+            margin-top: 10px;
+            width: 800px;
+            max-height: 350px;
+            overflow-y: scroll;
+            background-color: #aaa;
+        }
+
+        #result::-webkit-scrollbar {
+            width: 1px;
+            background-color: transparent;
+        }
+
+        form {
+            margin-bottom: 10px;
+        }
+
+        .line {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .line * {
+            text-align: center;
+            margin: 7px 0;
+        }
+
+        #lineId {
+            width: 100px;
+        }
+
+        #lineName {
+            width: 500px;
+        }
+
+        #lineEmail {
+            width: 200px;
+        }

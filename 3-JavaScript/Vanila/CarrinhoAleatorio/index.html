@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta property="og:title" content="Corrida de carrinho" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://luanraabe.github.io/3-JavaScript/CarrinhoAleatorio/index.html" />
+    <meta property="og:description" content="Em quem você aposta" />
+    <meta property="og:image" itemprop="image" content="https://luanraabe.github.io/3-JavaScript/Carrinho/images/speed.png" />
+    <meta property="og:image:type" content="image/jpg" />
+    <meta property="og:image:width" content="256" />
+    <meta property="og:image:height" content="256" />
+    <title>Aleatorio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Ubuntu+Condensed&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>Bem vindo ao meu simulador de corrida</header>
+    <div id="subHeader">
+        Aqui temos três corredores, Pedro, Juca e Edna<br />
+        E três modos de corrida:<br />
+        Corrida rápida: 10 voltas<br />
+        Grande prêmio: 70 voltas<br />
+        Enduro: 160 voltas<br />
+        Vence a corrida quem terminar mais voltas em primeiro lugar<br />
+        Os valores de cada carro são gerados aleatoriamente sempre que recarregar a página<br />
+        Em suas marcas, VÂO!!!
+    </div>
+    <main>
+        <section id="mode">
+            <button onclick="fastRun()">Corrida rápida</button>
+            <button onclick="granPri()">Grande Prémio</button>
+            <button onclick="enduro()">Enduro</button>
+            <label for="rand">Quantas voltas vc quer?</label>
+            <input type="number" id="rand" max="50000">
+            <button onclick="rand()">GO!</button>
+        </section>
+        <section id="runers">
+            <div id="pedro"></div>
+            <div id="juca"></div>
+            <div id="edna"></div>
+        </section>
+        <section id="runs">
+            <div id="lapsInRun"></div>
+            <div id="lapWinner"></div>
+        </section>
+        <section id="runWinner">
+            <div id="name"></div>
+            <i id="trophel"></i>
+        </section>
+    </main>
+    <script type="text/javascript" src="scripts.js"></script>
+</body>
+
+</html>

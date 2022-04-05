@@ -1,0 +1,38 @@
+[
+    {
+        "registrationNumber": "001",
+        "name": "Fulano",
+        "branche": "267",
+        "email": "fulano@mail.com",
+        "sector": "cleaning",
+        "birthday": "01/02/1997"
+    },{
+        "registrationNumber": "002",
+        "name": "Sicrano",
+        "branche": "268",
+        "email": "sicrano@mail.com",
+        "sector": "administrative",
+        "birthday": "12/06/2001"
+    },{
+        "registrationNumber": "003",
+        "name": "Beltrano",
+        "branche": "269",
+        "email": "beltrano@mail.com",
+        "sector": "rh",
+        "birthday": "25/08/1999"
+    },{
+        "registrationNumber": "004",
+        "name": "Carlos",
+        "branche": "258",
+        "email": "carlos@mail.com",
+        "sector": "cleaning",
+        "birthday": "14/08/2000"
+    },{
+        "registrationNumber": "005",
+        "name": "Jose",
+        "branche": "247",
+        "email": "jose@mail.com",
+        "sector": "rh",
+        "birthday": "23/02/1998"
+    }
+]

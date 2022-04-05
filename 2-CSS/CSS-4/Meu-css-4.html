@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="uft-8" />
+      <title>Overflow</title>
+      <style>
+         h1 {
+            text-align: center;
+         }
+         fieldset.tela {
+            background-color: yellowgreen;
+            display: block;
+            margin: 0px 300px 0px 300px;
+            padding: 50px 300px 50px 300px;
+         }
+         .boxvisible {
+            border: 1px solid black;
+            width: 100px;
+            height: 100px;
+            margin: 0px 0px 250px 0px;
+         }
+
+         .boxhidden {
+            border: 1px solid black;
+            width: 100px;
+            height: 100px;
+            overflow: hidden;
+         }
+
+         .boxscroll {
+            border: 1px solid black;
+            width: 100px;
+            height: 100px;
+            overflow: scroll;
+         }
+
+         .boxauto {
+            border: 1px solid black;
+            width: 100px;
+            height: 100px;
+            overflow: auto;
+         }
+      </style>
+   </head>
+   <body>
+      <h1>
+         Demosntrando overflows na página
+      </h1>
+      <fieldset class="tela">
+         <h2>
+            Tipo visible
+         </h2>
+         <div class="boxvisible">
+            Imagina que chato seria uma página em que a todo momento que você tenta ler alguma coisa, ela está mal colocada e precisa reajustar a tela ou simplesmente as palavras estão fora da caixa que deveriam aparecer.
+         </div>
+         <h2>
+            Tipo hidden
+         </h2>
+         <div class="boxhidden">
+            Imagina que chato seria uma página em que a todo momento que você tenta ler alguma coisa, ela está mal colocada e as vezes nem aparecem.
+         </div>
+         <h2>
+            Tipo scroll
+         </h2>
+         <div class="boxscroll">
+            Imagina que chato seria uma página em que a todo momento que você tenta ler alguma coisa, ela está mal colocada e precisa reajustar, mas caso estejam com scroll as coisas ficam mais fácies, afinla se pode rolar a parte que está fora de alcance.
+         </div>
+         <h2>
+            Tipo auto
+         </h2>
+         <div class="boxauto">
+            Imagina que chato seria uma página em que a todo momento que você tenta ler alguma coisa, ela está mal colocada mas esse modo ajuda todos nós, inclusive os programadores, pois ele é automático :)
+         </div>
+      </fieldset>
+   </body>
+</html>

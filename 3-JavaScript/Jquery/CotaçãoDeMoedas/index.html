@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cotação de moedas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Condensed&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body>
+    <h1>Cotação de moedas com API</h1>
+    <h2>Converta as moedas disponíveis para real brasileiro</h2>
+    <div id="main">
+        <section id="instantaneal">
+            Moeda: <select id="codes"></select><br />
+            <div id="actual"></div>
+        </section>
+        <section id="infos">
+            Data inicial: <input type="date" id="date-1" /><br />
+            Data final: <input type="date" id="date-2" /><br />
+            <input type="button" id="consult" value="Consultar" />
+        </section>
+    </div>
+    <div id="screen">
+        <div id="graphics-legends">
+            <canvas id="graphics"></canvas>
+            <ul id="legends"></ul>
+        </div>
+        <div id="table">
+            <table id="result"></table>
+        </div>
+    </div>
+    <script type="text/javascript" src="scripts.js"></script>
+</body>
+
+</html>

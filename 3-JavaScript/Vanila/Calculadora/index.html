@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta property="og:title" content="Calculadora" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://luanraabe.github.io/3-JavaScript/Calculadora/index.html" />
+    <meta property="og:description" content="Para os seus calculos mais complexos" />
+    <title>Calculadora</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Condensed&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <main>
+        <header>Calculadora Ep'i'son</header>
+        <section id="calculator">
+            <div id="calc">
+                <div id="numbers">
+                    <div class="number">
+                        Número1
+                        <input id="operator-1" type="number" step="10" />
+                    </div>
+                    <i id="operator" class="far fa-question-circle"></i>
+                    <div class="number">
+                        Número2
+                        <input id="operator-2" type="number" step="10" />
+                    </div>
+                </div>
+                <div class="operations">
+                    <label onclick="change(1)" id="add" for="op-1"><i class="fas fa-plus"></i></label>
+                    <input type="radio" id="op-1" name="operator" value="1" />
+
+                    <label onclick="change(2)" id="sub" for="op-2"><i class="fas fa-minus"></i></label>
+                    <input type="radio" id="op-2" name="operator" value="2" />
+
+                    <label onclick="change(3)" id="prd" for="op-3"><i class="fas fa-times"></i></label>
+                    <input type="radio" id="op-3" name="operator" value="3" />
+
+                    <label onclick="change(4)" id="div" for="op-4"><i class="fas fa-divide"></i></label>
+                    <input type="radio" id="op-4" name="operator" value="4" />
+                </div>
+            </div>
+            <div id="result"></div>
+            <button onclick="result()">Calcular</button>
+            <script type="text/javascript" src="scripts.js"></script>
+        </section>
+    </main>
+</body>
+
+</html>

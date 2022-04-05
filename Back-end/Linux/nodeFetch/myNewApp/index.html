@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Consulta fetch</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            width: 500px;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <h1>Busca de Pessoas</h1>
+        <h2>Digite o ID, nome ou email</h2>
+        <input type="text" id="id" placeholder="Id" />
+        <input type="text" id="name" placeholder="Name" />
+        <input type="text" id="email" placeholder="email" />
+        <input type="button" onclick="consultDataBase()" value="Consultar" />
+        <div id="result"></div>
+    </main>
+    <script type="text/javascript">
+        let inputName = document.getElementById('name');
+        let inputId = document.getElementById('id');
+        let inputEmail = document.getElementById('email');
+        let result = document.getElementById('result');
+        let inputs = {
+            id: inputId.value,
+            name: inputName.value,
+            email: inputEmail.value
+        };
+
+        function consultDataBase() {
+            inputs = {
+                id: parseInt(inputId.value),
+                name: inputName.value.toUperCase(),
+                email: inputEmail.value.toLowerCase()
+            };
+
+            console.log(JSON.stringify(inputs));
+
+            let fetchData = {
+                method: 'POST',
+                body: JSON.stringify(inputs),
+                headers:  {"Content-type": "application/json;charset=UTF-8"}
+            }
+
+            fetch('/', fetchData)
+                .then((response) => response.json())
+                .then(resp => result.innerHTML = resp.reduce(function (acc, cur) {
+                    return acc + cur.id + cur.name + cur.email + '<br />';
+                }, ""))
+                .catch(error => console.log("warning: ", error));
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Ubuntu Condensed', sans-serif;
+}
+html {
+  background-color: #fff;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 15px;
+  border: 1px solid black;
+  border-radius: 15px;
+  background-color: lightblue;
+}
+#main {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 80vw;
+  margin: 15px;
+}
+#instantaneal {
+  width: 300px;
+}
+#codes {
+  margin-bottom: 10px;
+}
+#infos * {
+  margin-bottom: 10px;
+}
+table { 
+  border: 1px solid #414141;
+}
+table * { 
+  padding: 15px; 
+}
+tr:nth-child(even) { 
+  background: #ccc; 
+}
+tr:nth-child(odd) { 
+  background: #FFF; 
+}
+
+#table {
+  max-height: 40vh;
+  overflow-y: scroll;
+  margin-bottom: 30px;
+}
+#table::-webkit-scrollbar {
+  width: 2px;
+}
+#graphics-legends {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 30px;
+}

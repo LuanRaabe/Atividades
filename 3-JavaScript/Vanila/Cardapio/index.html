@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta property="og:title" content="Cardápio" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://luanraabe.github.io/3-JavaScript/Cardapio/index.html" />
+    <meta property="og:description" content="Venha montar um sanduíche a sua vontade" />
+    <title>Churrasicpark</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Ubuntu+Condensed&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <main>
+        <form id="menu" name="menu">
+            <fieldset>
+                <legend>Tipo de pão</legend>
+                <input type="radio" name="bread" id="b1" value="1">
+                <label onclick="orderBread(1)" for="b1">Pão francês (R$3,00)</label><br />
+                <input type="radio" name="bread" id="b2" value="2">
+                <label onclick="orderBread(2)" for="b2">Pão Australiano (R$8,00)</label><br />
+                <input type="radio" name="bread" id="b3" value="3">
+                <label onclick="orderBread(3)" for="b3">Pão de Brioche (R$6,00)</label>
+            </fieldset>
+            <fieldset>
+                <legend>Tipo de hamburger</legend>
+                <input type="radio" name="steak" id="h1">
+                <label onclick="orderHamburger(1)" for="h1">Hambúrguer de picanha (R$13,00)</label><br />
+                <input type="radio" name="steak" id="h2">
+                <label onclick="orderHamburger(2)" for="h2">Hamburguer de costela (R$10,00)</label><br />
+                <input type="radio" name="steak" id="h3">
+                <label onclick="orderHamburger(3)" for="h3">Hamburguer Vegano (R$12,00)</label>
+            </fieldset>
+            <fieldset>
+                <legend>Tipo de salada</legend>
+                <input type="radio" name="salad" id="s1">
+                <label onclick="orderSalad(1)" for="s1">Alface (R$1,50)</label><br />
+                <input type="radio" name="salad" id="s2">
+                <label onclick="orderSalad(2)" for="s2">Tomate (R$1,50)</label><br />
+                <input type="radio" name="salad" id="s3">
+                <label onclick="orderSalad(3)" for="s3">sem salada (R$0,00)</label>
+            </fieldset>
+            <fieldset>
+                <legend>Tipo de queijo</legend>
+                <input type="radio" name="cheese" id="c1">
+                <label onclick="orderCheese(1)" for="c1">Mussarela (R$3,00)</label><br />
+                <input type="radio" name="cheese" id="c2">
+                <label onclick="orderCheese(2)" for="c2">Prato (R$3,00)</label><br />
+                <input type="radio" name="cheese" id="c3">
+                <label onclick="orderCheese(3)" for="c3">Cheddar (R$5,00)</label>
+            </fieldset>
+
+            <input onclick="alert('Obrigado pelo seu pedido');" type="submit" value="Fazer pedido">
+        </form>
+        <div id="order">
+            <div id="what">
+                <div id="title">Seu pedido:</div>
+                <div id="bread"></div>
+                <div id="hamburguer"></div>
+                <div id="salad"></div>
+                <div id="cheese"></div><br />
+                <div id="total">Total a pagar:</div>
+            </div>
+            <div id="price">
+                <div id="reais">Valor:</div>
+                <div id="pBread"></div>
+                <div id="pHamburguer"></div>
+                <div id="pSalad"></div>
+                <div id="pCheese"></div><br />
+                <div id="valor">R$ 0.00</div>
+            </div>
+        </div>
+    </main>
+    <script type="text/javascript" src="scripts.js"></script>
+</body>
+
+</html>

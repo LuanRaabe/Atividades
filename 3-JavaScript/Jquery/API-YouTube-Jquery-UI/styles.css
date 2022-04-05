@@ -1,0 +1,20 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Ubuntu Condensed', sans-serif;
+}
+
+body {
+  width: 100%;
+}
+
+#tabs {
+  width: 700px;
+  position: absolute;
+  top: 1%;
+  left: 50%;
+  transform: translate(-50%, -1%);
+}
+
+.accordion {
+  width: 640px;
+}

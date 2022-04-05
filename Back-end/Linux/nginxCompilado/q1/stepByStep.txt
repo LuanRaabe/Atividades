@@ -1,0 +1,35 @@
+$ sudo apt update
+$ apt list --upgradable
+$ sudo apt upgrade
+$ sudo apt-get install build-essential net-tools -y
+$ sudo apt-get install libpcre3-dev libssl-dev zlib1g-dev -y
+$ cd /opt
+$ wget http://nginx.org/download/nginx-1.20.2.tar.gz
+$ tar -zxf nginx-1.20.2.tar.gz
+$ cd nginx-1.20.2
+$ sudo ./configure --prefix=/web/nginx --modules-path=/web/nginx/modules --with-http_ssl_module
+$ sudo make
+$ sudo make install
+$ cd /bin
+$ sudo ln -s /web/nginx/sbin/nginx nginx
+$ nginx -v && nginx -V
+$ sudo vim /etc/systemd/system/nginx.service
+
+ESCREVER:
+
+[Unit]
+Description=The NGINX HTTP and reverse proxy server
+After=syslog.target network-online.target remote-fs.target nss-lookup.target
+Wants=network-online.target
+
+[Service]
+Type=forking
+PIDFile=/web/nginx/logs/nginx.pid
+ExecStartPre=/web/nginx/sbin/nginx -t
+ExecStart=/web/nginx/sbin/nginx
+ExecReload=/web/nginx/sbin/nginx -s reload
+ExecStop=/bin/kill -s QUIT $MAINPID
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

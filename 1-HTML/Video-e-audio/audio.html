@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+   <head>
+      <meta charset="uft-8" />
+      <meta property="og:title" content="Maravilhoras músicas" />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://LuanRaabe.github.io/Video-e-audio/audio" />
+      <meta property="og:audio" content="https://LuanRaabe.github.io/Video-e-audio/music/R-R.mp3" />
+      <meta property="og:image:width" content="300" />
+      <meta property="og:image:height" content="300" />
+      <meta property="og:description" content="Você vai adorar essa música" />
+      <title>Aquela musica</title>
+      <style>
+         h1{
+            text-align: center;
+         }
+         audio{
+            display: block;
+            margin: auto;
+            padding: 20px;
+            background-color: black;
+         }
+      </style>
+   </head>
+   <body>
+      <form>
+         <fieldset>
+            <legend>
+               Qual dessas duas musicas voce prefere?
+            </legend>
+            <audio controls>
+               <source src="music/R-R.mp3" type="audio/mpeg" />
+               Audio element not suported by your browser.
+            </audio>
+            <audio controls>
+               <source src="music/savanah.mp3" type="audio/mpeg" />
+               Audio element not suported by your browser.
+            </audio>
+         </fieldset>
+         <fieldset style="padding: 20px;background-color: white;">
+            <legend>Diz ai!</legend>
+            <p>
+               <input type="radio" name="bebida" id="agua" value="agua" />
+               <label for="agua">Musica 1</label>
+            </p>
+            <p>
+               <input type="radio" name="bebida" id="sucolaranja" value="sucolaranja" />
+               <label for="sucolaranja">Musica 2</label>
+            </p>
+         </fieldset>
+      </form>
+   </body>
+</html>

@@ -1,0 +1,33 @@
+const express = require('express');
+const app = express();
+const port = 3000;
+
+const produto = [
+	{
+	 "id": 1,
+	 "nome": "Produto A" 
+	}, {
+	 "id": 3,
+	 "nome": "Produto B"
+ 	}, {
+ 	 "id": 6,
+ 	 "nome": "Produto C"
+ 	}, {
+ 	 "id": 3, 
+ 	 "nome": "Produto D" 
+}];
+
+app.get('/', function (req, res) {
+    let item = [];
+    let id = req.query.id;
+    if (id){
+        item = produto.filter(item => item.id == id);
+	res.send(item);
+    }else{
+        res.send(produto);
+    }
+  });
+
+app.listen(port, () => {
+    console.log(´Example app listening at http://192.168.18.12:${port}`)
+});

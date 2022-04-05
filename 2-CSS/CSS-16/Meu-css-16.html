@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta charset="uft-8" />
+   <title>Caixinhas</title>
+   <style>
+      html {
+         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      }
+
+      .box {
+         display: flex;
+         flex-wrap: wrap;
+         width: 50em;
+         background-color: hsl(199, 84%, 52%);
+         padding: 2em;
+         border-radius: 1em;
+         margin: 1em;
+      }
+
+      .boxcolumn {
+         display: flex;
+         flex-direction: column;
+         flex-wrap: wrap;
+         width: 50em;
+         height: 40em;
+         background-color: hsl(199, 84%, 52%);
+         padding: 2em;
+         border-radius: 1em;
+         margin: 1em;
+      }
+
+      .boxcolumn>img {
+         height: fit-content;
+      }
+
+      img {
+         width: 16.5%;
+         height: 16.5%;
+      }
+
+      .gira {
+         transform: rotate(180deg);
+      }
+
+      .falsa {
+         visibility: collapse;
+      }
+
+      .falsa>img {
+         background-color: rgb(85, 85, 255);
+      }
+   </style>
+</head>
+
+<body>
+   <h1>
+      Oba, tudo supimpa? Será que você poderia me ajudar a encontrar a ordem certa das minhas cartinha?
+   </h1>
+   <h2>
+      Preciso que elas estejam nessa exatamente desta forma:
+   </h2>
+   <div class="box">
+      <img src="images/zero-azul.png" />
+      <img src="images/um-azul.png" />
+      <img src="images/dois-azul.png" />
+      <img class="gira" src="images/tres-azul.png" />
+      <img src="images/quatro-azul.png" />
+      <img src="images/cinco-azul.png" />
+      <img class="gira" src="images/seis-azul.png" />
+      <img src="images/sete-azul.png" />
+      <img src="images/oito-azul.png" />
+      <img class="gira" src="images/nove-azul.png" />
+      <img src="images/mais-dois-azul.png" />
+      <img src="images/bloqueio-azul.png" />
+      <img src="images/retorno-azul.png" />
+      <img src="images/mais-quatro.png" />
+      <img src="images/muda-cor.png" />
+   </div>
+   <form>
+      <div>
+         <input type="radio" id="option1" name="cartas" value="option1" />
+         <label for="option1">
+            Opção 1:
+            <div class="box">
+               <img src="images/zero-azul.png" />
+               <img src="images/um-azul.png" />
+               <img src="images/dois-azul.png" />
+               <img class="falsa" src="images/tres-azul.png" />
+               <img src="images/quatro-azul.png" />
+               <img src="images/cinco-azul.png" />
+               <img src="images/seis-azul.png" />
+               <img src="images/sete-azul.png" />
+               <img src="images/oito-azul.png" />
+               <img src="images/nove-azul.png" />
+               <img src="images/mais-dois-azul.png" />
+               <img src="images/bloqueio-azul.png" />
+               <img src="images/retorno-azul.png" />
+               <img src="images/mais-quatro.png" />
+               <img src="images/muda-cor.png" />
+            </div>
+         </label>
+         <input type="radio" id="option2" name="cartas" value="option1" />
+         <label for="option2">
+            Opção 2:
+            <div class="box">
+               <img src="images/zero-azul.png" />
+               <img src="images/um-azul.png" />
+               <img src="images/dois-azul.png" />
+               <img class="gira" src="images/tres-azul.png" />
+               <img src="images/quatro-azul.png" />
+               <img src="images/cinco-azul.png" />
+               <img class="gira" src="images/seis-azul.png" />
+               <img src="images/sete-azul.png" />
+               <img src="images/oito-azul.png" />
+               <img class="gira" src="images/nove-azul.png" />
+               <img src="images/mais-dois-azul.png" />
+               <img src="images/bloqueio-azul.png" />
+               <img src="images/retorno-azul.png" />
+               <img src="images/mais-quatro.png" />
+               <img src="images/muda-cor.png" />
+            </div>
+         </label>
+         <input type="radio" id="option3" name="cartas" value="option1" />
+         <label for="option3">
+            Opção 3:
+            <div class="box">
+               <img class="falsa" src="images/zero-azul.png" />
+               <img src="images/um-azul.png" />
+               <img src="images/dois-azul.png" />
+               <img src="images/tres-azul.png" />
+               <img src="images/quatro-azul.png" />
+               <img src="images/cinco-azul.png" />
+               <img src="images/seis-azul.png" />
+               <img src="images/sete-azul.png" />
+               <img src="images/oito-azul.png" />
+               <img src="images/nove-azul.png" />
+               <img src="images/mais-dois-azul.png" />
+               <img src="images/bloqueio-azul.png" />
+               <img src="images/retorno-azul.png" />
+               <img class="falsa" src="images/mais-quatro.png" />
+               <img src="images/muda-cor.png" />
+            </div>
+         </label>
+         <input type="radio" id="option4" name="cartas" value="option1" />
+         <label for="option4">
+            Opção 4:
+            <div class="boxcolumn">
+               <img src="images/zero-azul.png" />
+               <img src="images/um-azul.png" />
+               <img src="images/dois-azul.png" />
+               <img src="images/tres-azul.png" />
+               <img src="images/quatro-azul.png" />
+               <img src="images/cinco-azul.png" />
+               <img src="images/seis-azul.png" />
+               <img src="images/sete-azul.png" />
+               <img src="images/oito-azul.png" />
+               <img src="images/nove-azul.png" />
+               <img src="images/mais-dois-azul.png" />
+               <img src="images/bloqueio-azul.png" />
+               <img src="images/retorno-azul.png" />
+               <img src="images/mais-quatro.png" />
+               <img src="images/muda-cor.png" />
+            </div>
+         </label>
+         <input type="radio" id="option5" name="cartas" value="option1" />
+         <label for="option5">
+            Opção 5:
+            <div class="box">
+               <img src="images/zero-azul.png" />
+               <img src="images/um-azul.png" />
+               <img src="images/dois-azul.png" />
+               <img src="images/tres-azul.png" />
+               <img class="falsa" src="images/quatro-azul.png" />
+               <img src="images/cinco-azul.png" />
+               <img src="images/seis-azul.png" />
+               <img src="images/sete-azul.png" />
+               <img src="images/oito-azul.png" />
+               <img src="images/nove-azul.png" />
+               <img src="images/mais-dois-azul.png" />
+               <img src="images/bloqueio-azul.png" />
+               <img src="images/retorno-azul.png" />
+               <img src="images/mais-quatro.png" />
+               <img class="falsa" src="images/muda-cor.png" />
+            </div>
+         </label>
+      </div>
+      <input type="submit" value="Conferir resposta" onclick="alert('A resposta correta é a opção 2!')"/>
+   </form>
+</body>
+
+</html>

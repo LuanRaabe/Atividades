@@ -1,0 +1,14 @@
+[
+      {
+            "name": "abc",
+            "password": "abc123",
+            "uuid": "87d88a69-cccf-40e8-ba89-716aeeabd109",
+            "maxPoints": 28
+      },
+      {
+            "name": "Luan",
+            "password": "123",
+            "uuid": "299a12b7-88c2-4df3-8acc-9e8069453f52",
+            "maxPoints": 8
+      }
+]

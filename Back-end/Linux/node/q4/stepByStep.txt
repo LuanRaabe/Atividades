@@ -1,0 +1,26 @@
+
+sudo cp /etc/vsftpd.conf /etc/vsftpd.conf.orig
+sudo ufw enable
+sudo ufw allow 20/tcp
+sudo ufw allow 21/tcp
+sudo ufw allow 80/tcp
+sudo ufw allow 8080/tcp
+sudo ufw allow 990/tcp
+sudo ufw allow 40000:50000/tcp
+sudo ufw reload
+sudo chown nobody:nogroup /usr/local/lib/nodejs/node-$VERSION-$DISTRO/html
+sudo chown luanraabe:luanraabe /usr/local/lib/nodejs/node-$VERSION-$DISTRO/html/pages
+echo "vsftpd test file" | sudo tee /usr/local/lib/nodejs/node-$VERSION-$DISTRO/html/pages/test.txt
+sudo chmod 777 /etc/vsftpd.conf
+echo -e "write_enable=YES\n
+chroot_local_user=YES\n
+\n
+user_sub_token=$USER\n
+local_root=/usr/local/lib/nodejs/node-$VERSION-$DISTRO/html/pages\n
+pasv_min_port=40000\n
+pasv_max_port=50000\n
+userlist_enable=YES\n
+userlist_file=/etc/vsftpd.userlist\n
+userlist_deny=NO">>/etc/vsftpd.conf
+sudo echo "luanraabe" | sudo tee -a /etc/vsftpd.userlist
+sudo systemctl restart vsftpd

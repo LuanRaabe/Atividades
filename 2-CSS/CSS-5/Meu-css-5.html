@@ -1,0 +1,63 @@
+<!--cor solida, solida com transparencia, gradiente de cores, imagem unica e repetida-->
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="uft-8" />
+      <title>Utilizando cores</title>
+      <style>
+         body {
+            background: linear-gradient(105deg, rgb(222, 162, 228) 39%, rgb(168, 213, 223) 76%) center center / 2000px 2000px no-repeat;
+         }
+
+         h1 {
+            background-color: rgba(120, 76, 221, 0.7);
+            padding: 1em;
+            border-radius: 0.5em;
+            text-align: center;
+            color: rgb(218, 235, 240);
+         }
+
+         .pagina {
+            background-color: white;
+            padding: 2em;
+            border-radius: 1.9em;
+            text-decoration: underline black;
+            margin: 3em 3em 3em 3em;
+         }
+
+         .coracao {
+            padding: 1em;
+            background-image: url(coracao.jpg);
+            background-repeat: no-repeat;
+            background-size: 2em 2em;
+            background-position-x: center;
+         }
+
+         .estrela {
+            padding: 2em;
+            background-image: url(estrela.png);
+            background-size: 2em 2em;
+            background-position-x: center;
+         }
+      </style>
+   </head>
+   <body>
+      <h1>
+         Querido diário...
+      </h1>
+      <div class="pagina">
+         <p>
+            Hoje nós brincaremos com algumas cores e monstaremos a primeira página de nosso diário
+         </p>
+         <p>
+            Nessa página por exemplo, vamos usar algumas cores diferentes de fundo para marcar o que é necesário! 
+         </p>
+         <p>
+            Além de enfeitar elas o mais bonitinho o possível.
+         </p>
+         <div class="estrela"></div>
+         <br />
+         <div class="coracao"></div>
+      </div>
+   </body>
+</html>

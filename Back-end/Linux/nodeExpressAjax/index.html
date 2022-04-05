@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Busca por ID</title>
+	</head>
+	<body>
+		<h1>Busque seu produto</h1>
+		<input type="number" id="idToSearch"/>
+		<input type="button" id="button" value="Consultar" onclick="clicked()" />
+		<div id="result"></div>
+		<script type="text/javascript">
+			let button = document.getElementById('button');
+			let input = document.getElementById('idToSearch');
+			function reqListener() {
+				document.getElementById('result').innerHTML = this.responseText;
+			};
+			function clicked() {
+				let param = input.value;
+				console.log(param);
+				if(param == "") {
+					alert("Preciso de um número inteiro");
+				} else {
+					var oReq = new XMLHttpRequest();
+					oReq.onload = reqListener;
+					oReq.open("get", param, true);
+					oReq.send();
+				}
+			}
+		</script>
+	</body>
+</html>

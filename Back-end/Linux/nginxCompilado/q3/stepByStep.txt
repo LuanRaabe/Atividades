@@ -1,0 +1,9 @@
+$ sudo openssl req -x509 -nodes -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt
+$ sudo vim /web/nginx/conf/nginx.conf
+E TAMBEM
+$ sudo vim /web/nginx/conf/nginx.conf.default
+
+DESCOMENTAR PORTA 443 E ADCIONAR:
+
+ssl_certificate     /etc/ssl/certs/nginx-selfsigned.crt;
+ssl_certificate_key /etc/ssl/private/nginx-selfsigned.key;

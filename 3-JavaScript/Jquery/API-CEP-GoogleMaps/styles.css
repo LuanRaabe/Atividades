@@ -1,0 +1,65 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Ubuntu Condensed', sans-serif;
+}
+
+html {
+  background-color: #fff;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #414141;
+  margin: 30px;
+  padding: 30px;
+  border-radius: 20px;
+  height: 90vh;
+  background-color: #add8e6;
+}
+
+#iframe-here {
+  height: 60vh;
+  width: 60vw;
+  background-color: #bbb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#placeholder {
+  font-size: 40px;
+}
+
+#all-info {
+  display: flex;
+  flex-direction: row;
+  width: 60vw;
+  margin-bottom: 20px;
+}
+
+input[type="text"], [type="button"] {
+  width: 200px;
+  height: 30px;
+  font-size: large;
+}
+
+table {
+  text-align: left;
+  width: 100%;
+  font-size: 20px;
+  padding: 10px;
+  background-color: #fff;
+}
+
+#search {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  justify-content: space-around;
+}
+
+#address {
+  width: 100%;
+}

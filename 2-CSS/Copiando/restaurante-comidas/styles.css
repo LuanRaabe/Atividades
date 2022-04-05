@@ -1,0 +1,207 @@
+@font-face {
+    font-family: ClarendonRegular;
+    src: url("fonts/Clarendon-Regular.otf") format("otf");
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.cursive {
+    font-family: 'Sacramento', cursive;
+    font-size: 45px; 
+}
+
+.big-title {
+    font-family: 'Clarendon-Regular', serif;
+    font-size: 110px;
+}
+
+.title {
+    font-family: 'Clarendon-Regular', serif;
+    font-size: 36px;
+    font-weight: 600;
+}
+
+.description {
+    font-family: 'Clarendon-Regular', serif;
+    font-size: 17px;
+    height: auto;
+}
+
+.line {
+    display: flex;
+    flex-direction: row;
+    width: 1000px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 200px;
+}
+
+.reverse {
+    flex-direction: row-reverse;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.w400 {
+    width: 400px;
+}
+
+.h800 {
+    height: 800px;
+}
+
+.spacing {
+    width: 400px;
+    height: 30px;
+}
+
+.wline {
+    width: 100%;
+    height: 1px;
+    background-color: #2d1910;
+    margin: 15px 0;
+}
+
+header {
+    margin: 0;
+}
+
+.carousel {
+    width: 1583px;
+    height: 631px;
+    overflow: hidden;
+    margin: 0;
+}
+
+.carousel .photos {
+    width: 22400px;
+    animation-name: animation-carousel;
+    animation-duration: 60s;
+    animation-iteration-count: infinite;
+    margin: 0;
+    padding: 0;
+}
+
+.carousel .photos img {
+    width: 1595px;
+}
+
+.text {
+    width: 600px;
+    height: 500px;
+    color: #fff;
+    font-weight: 600;
+    position: absolute;
+    bottom: 15%;
+    left: 20%;
+}
+
+#homepage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#content{
+    color: #2d1910;
+}
+.content img{
+    width: 488px;
+    height: 750px;
+}
+
+#recieve-email {
+    color: #fff;
+    background-color: #2d1910;
+    height: 300px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    padding-top: 50px;
+}
+
+.lineemail{
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.columnemail {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    background-color: transparent;
+    border: solid #fff;
+    width: 535px;
+    height: 39px;
+}
+
+input[type="email"]::-webkit-input-placeholder {
+    position: absolute;
+    left: 5%;
+    top: 20%;
+    font-size: 22px;
+    color: #fff;
+}
+
+.smallspace {
+    height: 10px;
+}
+
+.button {
+    background-color: transparent;
+    border: solid #fff;
+    color: currentColor;
+    width: 541px;
+    height: 39px;
+}
+
+#navigation-bar {
+    background-color: #fff;
+    color: #2d1910;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+footer {
+    color: #2d1910;
+    margin-bottom: 15px;
+}
+
+.line-nav {
+    width: 75%;
+    display: flex;
+    flex-direction: row;
+    align-items:flex-end;
+    justify-content: space-around;
+}
+
+.column-nav {
+    display: flex;
+    flex-direction: column;
+}
+
+nav {
+    width: 30%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}

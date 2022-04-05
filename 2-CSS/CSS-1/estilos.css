@@ -1,0 +1,19 @@
+h1 {
+   color: darkblue;
+   background-color: powderblue;
+   border: 3px solid black;
+ }
+ 
+ p {
+   color: red;
+ }
+
+ body {
+   background-color: bisque;
+ }
+
+ img {
+   padding: 20px;
+   display: block;
+   margin: auto;
+ }

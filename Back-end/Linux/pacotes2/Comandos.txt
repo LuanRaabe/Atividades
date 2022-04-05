@@ -1,0 +1,70 @@
+sudo apt-get remove --purge apache2 apache2-data apache2-utlis
+sudo apt-get remove --purge apache2
+sudo apt-get remove --purge apache2-common
+whereis apache2
+sudo rm -rf /usr/sbin/apache2
+sudo rm -rf /etc/apache2
+sudo rm -rf /usr/share/apache2
+sudo rm -rf /usr/share/man/man8/apache2.8.gz
+sudo rm -rf /usr/lib/apache2
+sudo apt-get install wget
+wget https://dlcdn.apache.org//httpd/httpd-2.4.51.tar.gz
+tar -vzxf httpd-2.4.51.tar.gz
+cd httpd-2.4.51
+./configure
+
+Erro: Configure: error: APR not found. Please read the documentation
+sudo apt-get install libapr1-dev
+sudo apt-get install libaprutil1-dev
+
+Erro: C compiler cannot create executables
+sudo apt-get install g++
+sudo apt-get install libc6-dev
+sudo apt-get install glibc
+sudo apt-get install make
+sudo apt-get install bison
+sudo apt-get install flex
+sudo apt-get install freetds-dev
+
+Erro: pcre-config for libpcre not found
+sudo apt-get install libpcre3-dev
+
+Fim dos erros:
+sudo make
+sudo make install
+
+sudo /usr/local/apache2/bin/apachectl -k start
+Erros retornam:
+mesmo processo sudo make install
+wget https://github.com/PhilipHazel/pcre2/releases/download/pcre2-10.39/pcre2-10.39.tar.bz2
+wget https://github.com/libexpat/libexpat/releases/download/R_2_4_1/expat-2.4.1.tar.bz2
+
+cd srclib/
+wget https://dlcdn.apache.org//apr/apr-1.7.0.tar.gz
+wget https://dlcdn.apache.org//apr/apr-util-1.6.1.tar.gz
+tar -vzxf apr apr-1.7.0.tar.gz
+tar -vzxf apr apr-util-1.6.1.tar.gz
+cd apr-1.7.0
+./configure
+sudo make
+sudo make install
+cd apr-util-1.6.1
+./configure --with-apr=/home/luanraabe/httpd-2.4.51/srclib/apr-1.7.0
+sudo make
+sudo make install
+cd ..
+cd .. 
+./configure
+sudo make
+sudo make install
+sudo /usr/local/apache2/bin/apachectl -k start
+cd /usr/local/apache2/conf
+sudo chmod 777 httpd.conf
+vim httpd.conf
+*adicionar porta 8080* virtualhost?
+sudo ufw allow 8080/tcp
+sudo ufw status
+sudo ufw enable
+
+Versão:
+/usr/local/apache2/bin/apachectl -v

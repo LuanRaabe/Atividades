@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta property="og:title" content="Jogo da velha" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://luanraabe.github.io/3-JavaScript/JogoDaVelha/index.html" />
+    <meta property="og:description" content="Huuuuuum, joguin 3x3" />
+    <title>Joguim da veia</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Ubuntu+Condensed&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1>Jogador <span id="players"></span></h1>
+    <main>
+        <div class="line">
+            <input type="button" value="_" onclick="mark(this, 0, 0)">
+            <input type="button" value="_" onclick="mark(this, 0, 1)">
+            <input type="button" value="_" onclick="mark(this, 0, 2)">
+        </div>
+        <div class="line">
+            <input type="button" value="_" onclick="mark(this, 1, 0)">
+            <input type="button" value="_" onclick="mark(this, 1, 1)">
+            <input type="button" value="_" onclick="mark(this, 1, 2)">
+        </div>
+        <div class="line">
+            <input type="button" value="_" onclick="mark(this, 2, 0)">
+            <input type="button" value="_" onclick="mark(this, 2, 1)">
+            <input type="button" value="_" onclick="mark(this, 2, 2)">
+        </div>
+    </main>
+
+    <input type="button" value="Reiniciar" id="restart" onclick="restart()">
+    <script type="text/javascript" src="scripts.js"></script>
+</body>
+
+</html>

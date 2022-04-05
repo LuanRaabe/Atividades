@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta property="og:title" content="Seu Zé empreendedor" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://luanraabe.github.io/3-JavaScript/Satisfacao/index.html" />
+    <meta property="og:description" content="É isso mesmo freguesia, aqui é três por dez!" />
+    <title>Lojinha da esquina</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>Deixe a sua avaliação, isso nos ajuda muito a melhorar!</header>
+    <main>
+        <div id="form">
+            <div class="stars">
+                <input type="radio" id="cm_star-empty" name="fb" value="" checked />
+
+                <label for="cm_star-1"><i class="far fa-star"></i></label>
+                <input type="radio" id="cm_star-1" name="fb" value="1" />
+
+                <label for="cm_star-2"><i class="far fa-star"></i></label>
+                <input type="radio" id="cm_star-2" name="fb" value="2" />
+
+                <label for="cm_star-3"><i class="far fa-star"></i></label>
+                <input type="radio" id="cm_star-3" name="fb" value="3" />
+
+                <label for="cm_star-4"><i class="far fa-star"></i></label>
+                <input type="radio" id="cm_star-4" name="fb" value="4" />
+
+                <label for="cm_star-5"><i class="far fa-star"></i></label>
+                <input type="radio" id="cm_star-5" name="fb" value="5" />
+            </div>
+            <textarea id="coment"></textarea>
+            <button onclick="send()">Enviar</button>
+        </div>
+        <div id="answer">
+            <div id="title"></div>
+            <div id="a-stars"></div>
+            <div id="a-coment"></div>
+        </div>
+        <script type="text/javascript" src="scripts.js"></script>
+    </main>
+</body>
+
+</html>

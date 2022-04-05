@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8"/>
+      <style>
+
+         body {
+            font-family: "Lucida Console", Courier, monospace;
+            background-color: black;
+            border-style: solid;
+            border-color: white;
+            border-width: 0.1em;
+            border-radius: 1em;
+            padding: 2%;
+            margin: auto;
+         }
+
+         h1 {
+            font-weight: lighter;
+            color: white;
+            text-align: center;
+         }
+
+         h4 {
+            color: white;
+         }
+
+         ul {
+            color: white;
+            width: 8em;
+         }
+
+         li {
+            border-style: solid;
+            border-color: rgba(0, 255, 255, 0.658);
+            border-radius: 1em;
+            padding: 1em;
+            margin: 1em 1em 1em 0em;
+         }
+
+         .conteudo {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            align-items: center;
+         }
+
+         a {
+            text-decoration: none;
+            color: blanchedalmond;
+         }
+
+         a:hover {
+            color: pink;
+         }
+
+         form {
+            color: white;
+         }
+
+         span {
+            font-size: large;
+         }
+
+      </style>
+      <script type="application/javascript">
+         var sun = new Image();
+         var mercury = new Image();
+         var venus = new Image();
+         var earth = new Image();
+         var mars = new Image();
+         var jupiter = new Image();
+         var saturn = new Image();
+         var uranus = new Image();
+         var neptune = new Image();
+         
+         function init() {
+         sun.src = 'sol.jpg';
+         mercury.src = 'mercurio.jpg';
+         venus.src = 'venus.jpg';
+         earth.src = 'terra.jpg';
+         mars.src = 'marte.jpg';
+         jupiter.src = 'jupiter.jpg';
+         saturn.src = 'saturno.jpg';
+         uranus.src = 'urano.jpg';
+         neptune.src = 'netuno.jpg';
+         window.requestAnimationFrame(draw);
+         }
+
+         function draw() {
+         var ctx = document.getElementById('canvas').getContext('2d');
+
+         ctx.globalCompositeOperation = 'source-over';
+         ctx.fillStyle = "black";
+         ctx.fillRect(0, 0, 1000, 1000); // clear canvas
+
+         ctx.fillStyle = 'rgba(0, 0, 0, 0.4)';
+         ctx.strokeStyle = 'rgba(0, 153, 255, 0.4)';
+         ctx.save();
+         ctx.translate(500, 500);
+
+         // Earth
+         var time = new Date();
+         ctx.rotate(((2 * Math.PI) / 40) * time.getSeconds() + ((2 * Math.PI) / 40000) * time.getMilliseconds());
+         ctx.translate(-180, -105);
+         ctx.drawImage(earth, 30, 30, 30, 30);
+
+         ctx.restore();
+         ctx.save();
+         ctx.translate(500, 500);
+
+         // Mercury
+         ctx.rotate(((2 * Math.PI) / 32) * time.getSeconds() + ((2 * Math.PI) / 32000) * time.getMilliseconds());
+         ctx.translate(-90, -60);
+         ctx.drawImage(mercury, 30, 30, 30, 30);
+
+         ctx.restore();
+         ctx.save();
+         ctx.translate(500, 500);
+
+         // Venus
+         ctx.rotate(((2 * Math.PI) / 36) * time.getSeconds() + ((2 * Math.PI) / 36000) * time.getMilliseconds());
+         ctx.translate(20, 20);
+         ctx.drawImage(venus, 30, 30, 30, 30);
+
+         ctx.restore();
+         ctx.save();
+         ctx.translate(500, 500);
+
+         // Mars
+         ctx.rotate(((2 * Math.PI) / 44) * time.getSeconds() + ((2 * Math.PI) / 44000) * time.getMilliseconds());
+         ctx.translate(152, -100);
+         ctx.drawImage(mars, 30, 30, 30, 30);
+
+         ctx.restore();
+         ctx.save();
+         ctx.translate(500, 500);
+
+         // Jupiter
+         ctx.rotate(((2 * Math.PI) / 48) * time.getSeconds() + ((2 * Math.PI) / 48000) * time.getMilliseconds());
+         ctx.translate(-140, 200);
+         ctx.drawImage(jupiter, 30, 30, 30, 30);
+
+         ctx.restore();
+         ctx.save();
+         ctx.translate(500, 500);
+
+         // Saturn
+         ctx.rotate(((2 * Math.PI) / 52) * time.getSeconds() + ((2 * Math.PI) / 52000) * time.getMilliseconds());
+         ctx.translate(180, 180);
+         ctx.drawImage(saturn, 15, 15, 60, 30);
+
+         ctx.restore();
+         ctx.save();
+         ctx.translate(500, 500);
+
+         // Uranus
+         ctx.rotate(((2 * Math.PI) / 56) * time.getSeconds() + ((2 * Math.PI) / 56000) * time.getMilliseconds());
+         ctx.translate(-210, 275);
+         ctx.drawImage(uranus, 30, 30, 30, 30);
+
+         ctx.restore();
+         ctx.save();
+         ctx.translate(500, 500);
+
+         // Neptune
+         ctx.rotate(((2 * Math.PI) / 60) * time.getSeconds() + ((2 * Math.PI) / 60000) * time.getMilliseconds());
+         ctx.translate(-395, -240);
+         ctx.drawImage(neptune, 30, 30, 30, 30);
+
+         ctx.restore();
+
+         ctx.beginPath();
+         ctx.arc(500, 500, 50, 0, Math.PI * 2, false); // Mercury orbit
+         ctx.stroke();
+         ctx.beginPath();
+         ctx.arc(500, 500, 92, 0, Math.PI * 2, false); // Venus orbit
+         ctx.stroke();
+         ctx.beginPath();
+         ctx.arc(500, 500, 150, 0, Math.PI * 2, false); // Earth orbit
+         ctx.stroke();
+         ctx.beginPath();
+         ctx.arc(500, 500, 205, 0, Math.PI * 2, false); // Mars orbit
+         ctx.stroke();
+         ctx.beginPath();
+         ctx.arc(500, 500, 262, 0, Math.PI * 2, false); // Jupiter orbit
+         ctx.stroke();
+         ctx.beginPath();
+         ctx.arc(500, 500, 310, 0, Math.PI * 2, false); // Saturn orbit
+         ctx.stroke();
+         ctx.beginPath();
+         ctx.arc(500, 500, 360, 0, Math.PI * 2, false); // Uranus orbit
+         ctx.stroke();
+         ctx.beginPath();
+         ctx.arc(500, 500, 402, 0, Math.PI * 2, false); // Neptune orbit
+         ctx.stroke();
+
+         ctx.drawImage(sun, 485, 485, 30, 30);
+
+         window.requestAnimationFrame(draw);
+         }
+
+         init();
+         
+      </script>
+   </head>
+   <body onload="init();">
+      <h1>
+         O sistema solar
+      </h1>
+      <h4>
+         Versão 2 do meu sistema solar:
+      </h4>
+      <section class="conteudo">
+         <nav>
+            <ul class="navegacao">
+               <span>Para saber mais sobre cada planeta, basta clicar nos links abaixo:</span>
+               <li><a href="https://pt.wikipedia.org/wiki/Merc%C3%BArio_(planeta)" target="_blank">Mercurio</a></li>
+               <li><a href="https://pt.wikipedia.org/wiki/V%C3%A9nus_(planeta)" target="_blank">Venus</a></li>
+               <li><a href="https://pt.wikipedia.org/wiki/Terra" target="_blank">Terra</a></li>
+               <li><a href="https://pt.wikipedia.org/wiki/Marte_(planeta)" target="_blank">Marte</a></li>
+               <li><a href="https://pt.wikipedia.org/wiki/J%C3%BApiter_(planeta)" target="_blank">Jupiter</a></li>
+               <li><a href="https://pt.wikipedia.org/wiki/Saturno_(planeta)" target="_blank">Saturno</a></li>
+               <li><a href="https://pt.wikipedia.org/wiki/Urano_(planeta)" target="_blank">Urano</a></li>
+               <li><a href="https://pt.wikipedia.org/wiki/Netuno_(planeta)" target="_blank">Netuno</a></li>
+               <li><a href="https://pt.wikipedia.org/wiki/Plut%C3%A3o" target="_blank">Plutão</a></li>
+            </ul>
+         </nav>
+         <canvas id="canvas" width="1000" height="1000"></canvas>
+         <form>
+            <p>Qual planeta você mais gosta?</p>
+            <input type="radio" id="mercurio" name="mercurio" />
+            <label for="mercurio">Mercurio</label><br />
+            <input type="radio" id="venus" name="venus" />
+            <label for="venus">Vênus</label><br />
+            <input type="radio" id="terra" name="terra" />
+            <label for="terra">Terra</label><br />
+            <input type="radio" id="marte" name="marte" />
+            <label for="marte">Marte</label><br />
+            <input type="radio" id="jupiter" name="jupiter" />
+            <label for="jupiter">Júpiter</label><br />
+            <input type="radio" id="saturno" name="saturno" />
+            <label for="saturno">Saturno</label><br />
+            <input type="radio" id="urano" name="urano" />
+            <label for="urano">Urano</label><br />
+            <input type="radio" id="netuno" name="netuno" />
+            <label for="netuno">Netuno</label><br />
+            <input type="radio" id="plutao" name="plutao" />
+            <label for="plutao">Plutão</label><br />
+            
+            <hr />
+
+            <label for="send">Que nota você dá para essa magnífica página?</label>
+            <input type="range" min="0" max="10" id="send" oninput="result.value=send.value"/><br />
+            <label for="result">Seu valor:</label>
+            <input type="text" id="result" value="5" />
+
+            <hr />
+
+            <input type="submit" value="Enviar" onclick="alert('Obrigado :)')"/>
+         </form>
+      </section>
+   </body>
+</html>

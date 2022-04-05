@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Consulta fetch</title>
+    <link rel="stylesheet" href="./styles.css" />
+    
+</head>
+
+<body>
+    <main>
+        <h1>Buscando por pessoas</h1>
+        <h2>Digite o ID, nome ou email</h2>
+        <form>
+            <input type="text" id="info" placeholder="Id, nome, email" />
+            <select name="typeOfInfo" id="typeOfInfo">
+                <option disabled selected value="">--Selecione um--</option>
+                <option value="id">Id</option>
+                <option value="name">Nome</option>
+                <option value="email">Email</option>
+            </select>
+            <input type="button" onclick="formatData()" value="Consultar" />
+        </form>
+        <div class="line"><div id="lineId">ID</div><div id="lineName">NOME</div><div id="lineEmail">EMAIL</div></div>
+        <div id="result"></div>
+    </main>
+    <script type="text/javascript" src="./scripts.js"></script>
+</body>
+
+</html>

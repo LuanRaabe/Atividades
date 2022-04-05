@@ -1,0 +1,299 @@
+* {
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+}
+
+body {
+   font-family: 'Work Sans', sans-serif;
+}
+
+.very-big-title {
+   width: 351px;
+   height: 350px;
+   font-size: 150px;
+   font-weight: 800;
+   letter-spacing: 0;
+   overflow-wrap: break-word;
+}
+
+.big-title {
+   font-size: 62px;
+   font-weight: 700;
+}
+
+.title {
+   font-size: 25px;
+   font-weight: 700;
+}
+
+.blue-button {
+   width: 180px;
+   height: 40px;
+   border: none;
+   background-color: #3a54b4;
+   color: white;
+}
+
+.column {
+   display: flex;
+   flex-direction: column;
+}
+
+.column2 {
+   display: flex;
+   flex-direction: column;
+   width: 241px;
+   align-items: center;
+}
+
+.description {
+   margin: 30px 0;
+}
+
+.width250 {
+   width: 250px;
+}
+
+.signature {
+   font-weight: 700;
+}
+
+#center {
+   text-align: center;
+   margin-bottom: 50px;
+}
+
+#homepage, header {
+   color: #3a54b4;
+}
+
+#navigation-bar {
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   justify-content: space-around;
+   position: fixed;
+   top: 0;
+   width: 100%;
+   color: #3a54b4;
+}
+
+#navigation{
+   width: 104px;
+   height: 40px;
+}
+
+nav {
+   width: 800px;
+   height: 108px;
+   display: flex;
+   justify-content: space-around;
+}
+
+#navigation-bar, header {
+   background-color: #fef7ed;
+}
+
+#navigation-bar nav {
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+}
+
+nav div {
+   color: #3a54b4;
+}
+
+#navigation-bar #logo img {
+   width: 22px;
+   height: 28px;
+}
+
+#logo {
+   width: 140px;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: center;
+}
+
+header {
+   margin-top: 108px;
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+}
+
+header img {
+   width: 479px;
+   height: 478px;
+   border-radius: 250px;
+   border: none;
+   overflow: hidden;
+   margin-left: 100px;
+}
+
+.header-description {
+   font-size: 31px;
+   margin-bottom: 20px;
+}
+
+#homepage-about-me {
+   height: 580px;
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   justify-content: center;
+}
+
+#homepage-about-me img {
+   width: 419px;
+   height: 410px;
+   border: none;
+   border-radius: 220px;
+   overflow: hidden;
+   margin-right: 100px;
+}
+
+#homepage-about-me #description-me {
+   width: 354px;
+   height: 141px;
+}
+
+#homepage-services {
+   margin: 0 150px 100px 150px;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-around;
+}
+
+#homepage-services img {
+   width: 230px;
+   height: 230px;
+   border-radius: 115px;
+   border: none;
+   overflow: hidden;
+   margin: 20px 0;
+}
+
+#photos {
+   height: 700px;
+   margin: 0 80px;
+}
+
+#client-photos {
+   height: 600px;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-between;
+}
+
+#client-photos img {
+   width: 383px;
+   height: 288px;
+   margin-bottom: 22px;
+}
+
+#relats {
+   margin: 100px 150px 150px 150px;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-around;
+}
+
+#relats div {
+   text-align: center;
+}
+
+#contacts-blue {
+   padding: 100px 0 80px 0 ;
+   background-image: url('images/suspicious-dog.webp');
+   background-repeat: no-repeat;
+   background-position-x: 150px;
+   background-position-y:bottom;
+   background-color: #3a54b4;
+   color: #fff;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+#content {
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+}
+
+#send-a-email {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   justify-content: space-between;
+   width: 808px;
+   height: 330px;
+}
+
+#send-a-email input {
+   background-color: transparent;
+   border-style: none;
+   border-bottom: solid 1px #fff;
+}
+
+#send-a-email textarea {
+   background-color: transparent;
+   border-style: none;
+   border-bottom: solid 1px #fff;
+}
+
+#send-a-email input::-webkit-input-placeholder, #send-a-email textarea::-webkit-input-placeholder  { color:#ffffff; }
+
+#information {
+   width: 390px;
+   height: 40px;
+}
+
+#subject {
+   width: 800px;
+   height: 40px;
+}
+
+#send-a-email textarea {
+   width: 800px;
+   height: 123px;
+   resize: none;
+}
+
+.no-back-button {
+   width: 795px;
+   height: 40px;
+   text-align: center;
+   background-color: transparent;
+   border-style: none;
+   color: #fff;
+   font-weight: 700;
+}
+
+#social {
+   width: 200px;
+   display: flex;
+   justify-content: space-between;
+}
+
+#lets-chat {
+   display: flex;
+   padding: 20px 20px;
+   background-color: #3a54b4;
+   border-radius: 10px;
+   color: #fff;
+   font-weight: 700;
+   text-align: center;
+   letter-spacing: 1px;
+   position: fixed;
+   bottom: 20px;
+   right: 20px;
+}
+
+footer {
+   text-align: center;
+}

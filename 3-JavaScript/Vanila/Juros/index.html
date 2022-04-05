@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta property="og:title" content="Jurinhos" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://luanraabe.github.io/3-JavaScript/Juros/index.html" />
+    <meta property="og:description" content="Olha que sai caro" />
+    <meta property="og:image" itemprop="image"
+        content="https://luanraabe.github.io/3-JavaScript/Carrinho/images/speed.png" />
+    <meta property="og:image:type" content="image/jpg" />
+    <meta property="og:image:width" content="256" />
+    <meta property="og:image:height" content="256" />
+    <title>Calculadora de juros</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Ubuntu+Condensed&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <main>
+        <h1>Calculadora de Juros</h1>
+        <i id="drop" class="fas fa-caret-down" onclick="dropBox()"></i>
+        <form id="form">
+            <input id="name" type="name" placeholder="Nome do cliente">
+            <input id="date" type="date">
+            <input id="valor" type="number" placeholder="valor do dividendo">
+            <input type="button" onclick="addInfo()" value="Adicionar">
+            <input type="button" onclick="calcDebt()" value="Calcular juros">
+        </form>
+        <div id="table">
+            <div id="dataHeader">
+                <div class="line">
+                    <div>Nome</div>
+                    <div>Vencimento</div>
+                    <div>Valor</div>
+                    <div>Dias passados</div>
+                    <div>Juros</div>
+                </div>
+            </div>
+            <div id="dataClients"></div>
+        </div>
+    </main>
+    <section id="instructions">
+        <h3>1 - Adicionar novo usuário</h3>
+        <p>Para adicionar um novo cliente à lista, escreva seu nome no campo "Nome do cliente", a data de vencimento da
+            nota no campo de data e o valor do dividendo no campo "valor do divicendo", em seguida, precione "adicionar"
+            para mostra-lo na tabela abaixo</p>
+        <h3>2 - Calcular juros</h3>
+        <p>Após ter adicionado todos as informações de clientes necessárias, precione calcular juros para averiguar
+            todas as dívidas e suas correções</p>
+    </section>
+    <script type="text/javascript" src="scripts.js"></script>
+</body>
+
+</html>
