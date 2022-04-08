@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require("express");
 const app = express();
 const port = 8001;
 const fs = require("fs");
@@ -7,15 +7,16 @@ const cookieParser = require("cookie-parser");
 
 const session = require("./modules/session.js");
 const cookie = require("./modules/cookie.js");
+const hash = require("./modules/hash.js");
 
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use('/', express.static('src/home'));
-app.use('/hidden', express.static('src/Campo-hidden'));
-app.use('/cookie', express.static('src/Cookies'));
-app.use('/hash', express.static('src/Hash'));
+app.use("/", express.static("src/home"));
+app.use("/hidden", express.static("src/Campo-hidden"));
+app.use("/cookie", express.static("src/Cookies"));
+app.use("/hash", express.static("src/Hash"));
 
 app.get("/getcookie", (req, res) => {
     cookie.getCookie(req, res);
@@ -33,14 +34,29 @@ app.post("/checkcookie", (req, res) => {
 
 app.get("/removeCookie", (req, res) => {
     cookie.removeCookie(req, res);
-})
+});
+
+app.post("/check-hash", (req, res) => {
+    hash.checkHash(req, res);
+});
+
+app.post("/hash-to-uuid", (req, res) => {
+    console.log("req com body e hash", req.body);
+    hash.hashToUuid(req, res);
+});
+
+app.post("/compare-hash", (req, res) => {
+    res.send(hash.compareHash(req, res));
+});
 
 app.post("/login", (req, res) => {
     let check = session.checkAccount(req.body);
     let uuid =
-        check == "user not found" ? session.createAccount(req.body)
-        : check == "wrong password" ? "Usuário ou senha inválidos"
-        : check;
+        check == "user not found"
+            ? session.createAccount(req.body)
+            : check == "wrong password"
+            ? "Usuário ou senha inválidos"
+            : check;
     res.send(uuid);
 });
 
