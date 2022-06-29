@@ -1,13 +1,14 @@
+import { processs } from '../../env';
 import dotenv from 'dotenv';
 dotenv.config();
 
 const config = {
-    PORT: process.env.PORT || 8000,
+    PORT: processs.env.PORT || 8000,
     POSTGRES: {
-        USER: process.env.PGUSER,
-        HOST: process.env.PGHOST,
-        DATABASE: process.env.PGDATABASE,
-        PASSWORD: process.env.PGPASSWORD,
+        USER: processs.env.PGUSER,
+        HOST: processs.env.PGHOST,
+        DATABASE: processs.env.PGDATABASE,
+        PASSWORD: processs.env.PGPASSWORD,
     },
 };
 
