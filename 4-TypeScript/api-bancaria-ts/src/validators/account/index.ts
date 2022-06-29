@@ -1,6 +1,6 @@
 export { AccountNumberValidator } from './accountNumber';
-export { AccountVerificationValidator } from './accountVerificationNumber';
+export { AccountVerificationValidator } from './accountVerificationCode';
 export { BalanceValidator } from './balance';
-export { BranchValidator } from './branch';
-export { BranchVerificationValidator } from './branchVerificationNumber';
+export { AgencyCodeValidator } from './agencyNumber';
+export { AgencyCodeVerificationValidator } from './agencyVerificationCode';
 export { AccountDataValidator } from './account-data';

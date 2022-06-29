@@ -7,3 +7,4 @@ export {
     MakeTransfer,
     MakeDraft,
 } from './transactions';
+export { Fees } from './fees';

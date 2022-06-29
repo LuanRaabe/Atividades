@@ -1,30 +1,49 @@
-import { APIResponse, Account } from '../models';
+import { CreateUserService } from '.';
+import { APIResponse, Account, User } from '../models';
 import { ExceptionTreatment } from '../utils';
 import { AccountDataValidator } from '../validators';
-import { AccountsTable } from '../clients/dao/postgres/accountts';
+import { AccountsTable } from '../clients/dao/postgres/account';
+import { GenerateAccountData } from '../utils/generate-account-data';
 import { v4 } from 'uuid';
-
 class CreateAccountService {
     private accountDataValidator = AccountDataValidator;
+    private createUserService = CreateUserService;
     private accountsTable = AccountsTable;
+    private generateAccountData = GenerateAccountData;
 
-    public async execute(account: Account): Promise<APIResponse> {
+    public async execute(user: User): Promise<APIResponse> {
         try {
-            const validAccountData = new this.accountDataValidator(account);
+            const newUser = await new this.createUserService().execute(user);
+            console.log('can create', newUser);
+            let newAccount = await new this.generateAccountData().execute(
+                newUser.data.id,
+            );
+
+            console.log('newAccount', newAccount);
+
+            const validAccountData = new this.accountDataValidator(newAccount);
 
             if (validAccountData.errors) {
                 throw new Error(`400: ${validAccountData.errors}`);
             }
 
-            validAccountData.account.id = v4();
+            let existAccount = await new this.accountsTable().get(newAccount);
+            while (existAccount) {
+                newAccount = await new this.generateAccountData().execute(
+                    newUser.data.id,
+                );
+                existAccount = await new this.accountsTable().get(newAccount);
+            }
+
+            newAccount.id = v4();
 
             const insertedAccount = await new this.accountsTable().insert(
-                validAccountData.account as Account,
+                newAccount as Account,
             );
-
+            console.log('insertedAccount', insertedAccount);
             if (insertedAccount) {
                 return {
-                    data: validAccountData.account,
+                    data: insertedAccount,
                     messages: [],
                 } as APIResponse;
             }

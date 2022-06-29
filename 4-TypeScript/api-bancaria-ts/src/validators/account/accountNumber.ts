@@ -1,20 +1,20 @@
 class AccountNumberValidator {
-    public accountNumber: string;
+    public account_number: string;
     public errors: string;
 
-    public constructor(accountNumber: string) {
+    public constructor(account_number: string) {
         this.errors = '';
-        this.accountNumber = this.validate(accountNumber);
+        this.account_number = this.validate(account_number);
     }
 
-    private validate(accountNumber: string): string {
-        if (accountNumber.length === 0) {
-            this.errors += 'accountNumber:field required|';
+    private validate(account_number: string): string {
+        if (account_number.length === 0) {
+            this.errors += 'account_number:field required|';
 
             return '';
         }
 
-        return accountNumber.trim();
+        return account_number.trim();
     }
 }
 

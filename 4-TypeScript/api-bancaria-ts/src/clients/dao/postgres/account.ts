@@ -2,41 +2,47 @@ import { PostgresDB } from '.';
 import { Account } from '../../../models';
 
 class AccountsTable extends PostgresDB {
-    public async insert(account: Account): Promise<boolean> {
+    public async insert(account: Account): Promise<any> {
+        console.log('add new account', account);
         try {
             await this.client.connect();
 
             const insertAccountQuery = `
-                INSERT INTO accounts (
-                    user_id,
+                INSERT INTO public.accounts (
+                    id,
                     agency_number,
                     agency_verification_code,
                     account_number,
                     account_verification_code,
-                    balance
+                    balance,
+                    user_id
                 ) VALUES (
                     $1,
                     $2,
                     $3,
                     $4,
                     $5,
-                    $6
-                ) RETURNING id
+                    $6,
+                    $7
+                ) RETURNING *
             `;
 
             const result = await this.client.query(insertAccountQuery, [
                 account.id,
-                account.branch,
-                account.branchVerificationNumber,
-                account.accountNumber,
-                account.accountVerificationNumber,
+                account.agency_number,
+                account.agency_verification_code,
+                account.account_number,
+                account.account_verification_code,
                 account.balance,
+                account.user_id,
             ]);
+
+            console.log('result', result.rows);
 
             this.client.end();
 
             if (result.rows.length !== 0) {
-                return true;
+                return result.rows;
             }
 
             return false;
@@ -52,10 +58,7 @@ class AccountsTable extends PostgresDB {
 
             const getAccountQuery = `
             SELECT
-                agency_number,
-                agency_verification_code,
-                account_number,
-                account_verification_code
+                *
             FROM public.accounts
             WHERE
                 agency_number = $1 AND
@@ -65,16 +68,16 @@ class AccountsTable extends PostgresDB {
             `;
 
             const result = await this.client.query(getAccountQuery, [
-                account.branch,
-                account.branchVerificationNumber,
-                account.accountNumber,
-                account.accountVerificationNumber,
+                account.agency_number,
+                account.agency_verification_code,
+                account.account_number,
+                account.account_verification_code,
             ]);
 
             this.client.end();
 
             if (result.rows.length !== 0) {
-                return result;
+                return result.rows[0];
             }
 
             return false;

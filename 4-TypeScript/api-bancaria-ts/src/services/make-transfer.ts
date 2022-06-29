@@ -1,9 +1,9 @@
 import { APIResponse, MakeTransfer } from '../models';
-import { ExceptionTreatment } from '../utils';
+import { ExceptionTreatment, FeesValues } from '../utils';
 import { AccountDataValidator } from '../validators';
 import { UpdateBalance } from '../clients/dao/postgres/updateBalance';
-import { AccountsTable } from '../clients/dao/postgres/accountts';
-import { TransactionsTable } from '../clients/dao/postgres/transactionsts';
+import { AccountsTable } from '../clients/dao/postgres/account';
+import { TransactionsTable } from '../clients/dao/postgres/transactions';
 import { v4 } from 'uuid';
 
 class MakeTransferService {
@@ -11,16 +11,23 @@ class MakeTransferService {
     private accountsTable = AccountsTable;
     private transactionsTable = TransactionsTable;
     private updateBalance = UpdateBalance;
+    private feesValues = FeesValues;
 
     public async execute(transfer: MakeTransfer): Promise<APIResponse> {
         try {
+            console.log('transfer', transfer);
+
             const validOriginAccountData = new this.accountDataValidator(
                 transfer.originAccount,
             );
 
+            console.log('validOriginAccountData', validOriginAccountData);
+
             const validDestinyAccountData = new this.accountDataValidator(
                 transfer.destinyAccount,
             );
+
+            console.log('validDestinyAccountData', validDestinyAccountData);
 
             if (
                 validOriginAccountData.errors ||
@@ -31,45 +38,90 @@ class MakeTransferService {
                     ${validDestinyAccountData.errors ?? ''}`);
             }
 
-            const originAccount = await new this.accountsTable().get(
+            const existOriginAccount = await new this.accountsTable().get(
                 transfer.originAccount,
             );
 
-            const destinyAccount = await new this.accountsTable().get(
+            console.log('existOriginAccount', existOriginAccount);
+
+            const existDestinyAccount = await new this.accountsTable().get(
                 transfer.destinyAccount,
             );
 
-            const updatedOriginAccount = await new this.updateBalance().update(
-                originAccount,
-                transfer.value,
+            console.log('existDestinyAccount', existDestinyAccount);
+
+            if (!existOriginAccount || !existDestinyAccount) {
+                return {
+                    data: {},
+                    messages: ['one of the accounts dosent exist'],
+                } as APIResponse;
+            }
+
+            const transferValue = new this.feesValues().transfer(
+                Number(transfer.value),
             );
+
+            console.log('transferValue', transferValue);
+
+            const originAccountBalance = await new this.updateBalance().get(
+                existOriginAccount,
+            );
+
+            console.log('originAccountBalance', originAccountBalance);
+
+            const destinyAccountBalance = await new this.updateBalance().get(
+                existDestinyAccount,
+            );
+
+            console.log('destinyAccountBalance', destinyAccountBalance);
+
+            const updatedOriginAccount = await new this.updateBalance().update(
+                transfer.originAccount,
+                originAccountBalance,
+                -1 * transferValue.value,
+            );
+
+            console.log('updatedOriginAccount', updatedOriginAccount);
 
             const updatedDestinyAccount = await new this.updateBalance().update(
-                destinyAccount,
-                transfer.value,
+                transfer.destinyAccount,
+                destinyAccountBalance,
+                Number(transfer.value),
             );
 
-            const validDeposit: MakeTransfer = {
+            console.log('updatedDestinyAccount', updatedDestinyAccount);
+
+            const validTransfer: MakeTransfer = {
                 id: v4(),
-                originAccount: originAccount,
-                destinyAccount: destinyAccount,
+                originAccount: existOriginAccount,
+                destinyAccount: existDestinyAccount,
                 value: transfer.value,
                 type: 'transfer',
-                date: String(Math.round(new Date().getTime() / 1000)),
+                date: new Date().toString(),
             };
+
+            console.log('validTransfer', validTransfer);
 
             const insertedTransaction =
                 await new this.transactionsTable().makeTransfer(
-                    validDeposit as MakeTransfer,
+                    validTransfer as MakeTransfer,
+                    transferValue.fee.toString(),
                 );
+
+            console.log('insertedTransaction', insertedTransaction);
 
             if (insertedTransaction) {
                 return {
                     data: {
-                        validDeposit: validDeposit,
+                        validTransfer: {
+                            value: validTransfer.value,
+                            fee: transferValue.fee,
+                            type: validTransfer.type,
+                            date: validTransfer.date,
+                        },
                         updated: {
-                            origin: updatedOriginAccount,
-                            destiny: updatedDestinyAccount,
+                            origin_balance: updatedOriginAccount.balance,
+                            destiny_balance: updatedDestinyAccount.balance,
                         },
                     },
                     messages: [],

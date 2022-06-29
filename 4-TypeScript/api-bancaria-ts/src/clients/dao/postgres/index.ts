@@ -6,7 +6,10 @@ class PostgresDB {
 
     public constructor() {
         this.client = new Client({
-            connectionString: config.POSTGRES.CONNECTION_STRING,
+            user: config.POSTGRES.USER,
+            password: String(config.POSTGRES.PASSWORD),
+            host: config.POSTGRES.HOST,
+            database: config.POSTGRES.DATABASE,
         });
     }
 }

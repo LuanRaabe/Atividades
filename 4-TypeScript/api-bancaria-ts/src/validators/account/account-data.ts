@@ -1,9 +1,8 @@
 import {
     AccountNumberValidator,
     AccountVerificationValidator,
-    BalanceValidator,
-    BranchValidator,
-    BranchVerificationValidator,
+    AgencyCodeValidator,
+    AgencyCodeVerificationValidator,
 } from '.';
 import { Account } from '../../models';
 class AccountDataValidator {
@@ -12,9 +11,8 @@ class AccountDataValidator {
 
     private accountnumbervalidator = AccountNumberValidator;
     private accountverificationvalidator = AccountVerificationValidator;
-    private balancevalidator = BalanceValidator;
-    private branchvalidator = BranchValidator;
-    private branchverificationvalidator = BranchVerificationValidator;
+    private agencyCodevalidator = AgencyCodeValidator;
+    private agencyCodeverificationvalidator = AgencyCodeVerificationValidator;
 
     public constructor(account: Account) {
         this.errors = '';
@@ -23,30 +21,31 @@ class AccountDataValidator {
 
     private validate(account: Account): Partial<Account> {
         const validAccountNumber = new this.accountnumbervalidator(
-            account.accountNumber,
+            account.account_number,
         );
         const validAccountVerificationNumber =
             new this.accountverificationvalidator(
-                account.accountVerificationNumber,
+                account.account_verification_code,
             );
-        const validBalance = new this.balancevalidator(account.balance);
-        const validBranch = new this.branchvalidator(account.branch);
-        const validBranchVerification = new this.branchverificationvalidator(
-            account.branchVerificationNumber,
+        const validAgencyCode = new this.agencyCodevalidator(
+            account.agency_number,
         );
+        const validAgencyCodeVerification =
+            new this.agencyCodeverificationvalidator(
+                account.agency_verification_code,
+            );
 
         this.errors = this.errors.concat(
-            `${validAccountNumber.errors}${validAccountVerificationNumber.errors}${validBalance.errors}${validBranch.errors}${validBranchVerification.errors}`,
+            `${validAccountNumber.errors}${validAccountVerificationNumber.errors}${validAgencyCode.errors}${validAgencyCodeVerification.errors}`,
         );
 
         const accountData: Partial<Account> = {
-            accountNumber: validAccountNumber.accountNumber,
-            accountVerificationNumber:
+            account_number: validAccountNumber.account_number,
+            account_verification_code:
                 validAccountVerificationNumber.accountVerification,
-            balance: validBalance.balance,
-            branch: validBranch.branch,
-            branchVerificationNumber:
-                validBranchVerification.branchVerification,
+            agency_number: validAgencyCode.agency_number,
+            agency_verification_code:
+                validAgencyCodeVerification.agencyCodeVerification,
         };
 
         return accountData;
