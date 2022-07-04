@@ -1,6 +1,6 @@
 import { CreateUserService } from '.';
 import { APIResponse, Account, User } from '../models';
-import { ExceptionTreatment } from '../utils';
+import { ExceptionTreatment, Crypto } from '../utils';
 import { AccountDataValidator } from '../validators';
 import { AccountsTable } from '../clients/dao/postgres/account';
 import { GenerateAccountData } from '../utils/generate-account-data';
@@ -10,14 +10,20 @@ class CreateAccountService {
     private createUserService = CreateUserService;
     private accountsTable = AccountsTable;
     private generateAccountData = GenerateAccountData;
+    private crypto = Crypto;
 
-    public async execute(user: User): Promise<APIResponse> {
+    public async execute(user: User & Account): Promise<APIResponse> {
         try {
+            console.log('user', user);
             const newUser = await new this.createUserService().execute(user);
+
             console.log('can create', newUser);
+
             let newAccount = await new this.generateAccountData().execute(
-                newUser.data.id,
+                newUser.id,
             );
+
+            newAccount.password = user.password;
 
             console.log('newAccount', newAccount);
 
@@ -28,23 +34,29 @@ class CreateAccountService {
             }
 
             let existAccount = await new this.accountsTable().get(newAccount);
+
             while (existAccount) {
                 newAccount = await new this.generateAccountData().execute(
-                    newUser.data.id,
+                    newUser.id,
                 );
                 existAccount = await new this.accountsTable().get(newAccount);
             }
 
             newAccount.id = v4();
+            newAccount.password = await new this.crypto().cryptograf(
+                newAccount.password,
+            );
 
             const insertedAccount = await new this.accountsTable().insert(
                 newAccount as Account,
             );
+
             console.log('insertedAccount', insertedAccount);
+
             if (insertedAccount) {
                 return {
                     data: insertedAccount,
-                    messages: [],
+                    messages: ['account created successfully'],
                 } as APIResponse;
             }
 

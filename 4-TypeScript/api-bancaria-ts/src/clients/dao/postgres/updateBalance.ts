@@ -6,7 +6,7 @@ class UpdateBalance extends PostgresDB {
         account: Account,
         balance: number,
         value: number,
-    ): Promise<any> {
+    ): Promise<Account> {
         console.log('update balance', account, balance, value);
         try {
             await this.client.connect();
@@ -34,18 +34,14 @@ class UpdateBalance extends PostgresDB {
 
             console.log('result', result.rows);
 
-            if (result.rows.length !== 0) {
-                return result.rows[0];
-            }
-
-            return false;
+            return result.rows[0];
         } catch (error) {
             this.client.end();
             throw new Error('503: service temporarily unavailable');
         }
     }
 
-    public async get(account: Account): Promise<any> {
+    public async get(account: Account): Promise<number> {
         try {
             await this.client.connect();
 
@@ -61,11 +57,7 @@ class UpdateBalance extends PostgresDB {
 
             this.client.end();
 
-            if (result.rows.length !== 0) {
-                return Number(result.rows[0].balance);
-            }
-
-            return false;
+            return Number(result.rows[0].balance);
         } catch (error) {
             this.client.end();
             throw new Error('503: service temporarily unavailable');

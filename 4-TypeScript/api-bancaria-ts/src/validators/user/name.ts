@@ -20,6 +20,12 @@ class NameValidator {
             return '';
         }
 
+        if (name.trim().length > 100) {
+            this.errors += 'name:use a name with less then 100 characters|';
+
+            return '';
+        }
+
         if (!name.trim()) {
             this.errors += 'name:cannot be only space characters|';
 

@@ -10,6 +10,8 @@ const config = {
         DATABASE: processs.env.PGDATABASE,
         PASSWORD: processs.env.PGPASSWORD,
     },
+    SECRETKEY: processs.env.SECRETKEY,
+    SALTROUDS: processs.env.SALTROUDS,
 };
 
 export { config };

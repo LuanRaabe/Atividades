@@ -1,5 +1,5 @@
 import { APIResponse, MakeDraft } from '../models';
-import { ExceptionTreatment, FeesValues } from '../utils';
+import { ExceptionTreatment, FeesValues, Crypto } from '../utils';
 import { AccountDataValidator } from '../validators';
 import { UpdateBalance } from '../clients/dao/postgres/updateBalance';
 import { AccountsTable } from '../clients/dao/postgres/account';
@@ -12,6 +12,7 @@ class MakeDraftService {
     private accountsTable = AccountsTable;
     private transactionsTable = TransactionsTable;
     private updateBalance = UpdateBalance;
+    private crypto = Crypto;
 
     public async execute(draft: MakeDraft): Promise<APIResponse> {
         try {
@@ -31,11 +32,40 @@ class MakeDraftService {
 
             console.log('account', account);
 
+            if (!account) {
+                return {
+                    data: {},
+                    messages: ['account dosent exist'],
+                } as APIResponse;
+            }
+
+            const checkPassowrd = await new this.crypto().compare(
+                draft.account.password,
+                account.password,
+            );
+
+            console.log('checkPassowrd', checkPassowrd);
+
+            if (!checkPassowrd) {
+                return {
+                    data: {},
+                    messages: ['invalid password'],
+                } as APIResponse;
+            }
+
             const balance = await new this.updateBalance().get(account);
 
             console.log('balance', balance);
 
+            if (balance <= 0) {
+                throw new Error('400: Account balance is zero');
+            }
+
             const draftValue = new this.feesValues().draft(Number(draft.value));
+
+            if (balance < Number(draftValue.value)) {
+                throw new Error('400: Account has insuficient founds');
+            }
 
             console.log('draftValue', draftValue);
 
@@ -46,6 +76,10 @@ class MakeDraftService {
             );
 
             console.log('updated', updated);
+
+            if (!updated) {
+                throw new Error('400: Cannot update balance');
+            }
 
             const validDraft: MakeDraft = {
                 id: v4(),
@@ -72,7 +106,7 @@ class MakeDraftService {
                         updated: updated.balance,
                         fee: draftValue.fee,
                     },
-                    messages: [],
+                    messages: ['draft made successfully'],
                 } as APIResponse;
             }
 

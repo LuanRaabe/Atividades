@@ -2,7 +2,7 @@ import { PostgresDB } from '.';
 import { Account } from '../../../models';
 
 class AccountsTable extends PostgresDB {
-    public async insert(account: Account): Promise<any> {
+    public async insert(account: Account): Promise<Account | false> {
         console.log('add new account', account);
         try {
             await this.client.connect();
@@ -14,6 +14,7 @@ class AccountsTable extends PostgresDB {
                     agency_verification_code,
                     account_number,
                     account_verification_code,
+                    password,
                     balance,
                     user_id
                 ) VALUES (
@@ -23,7 +24,8 @@ class AccountsTable extends PostgresDB {
                     $4,
                     $5,
                     $6,
-                    $7
+                    $7,
+                    $8
                 ) RETURNING *
             `;
 
@@ -33,6 +35,7 @@ class AccountsTable extends PostgresDB {
                 account.agency_verification_code,
                 account.account_number,
                 account.account_verification_code,
+                account.password,
                 account.balance,
                 account.user_id,
             ]);
@@ -42,7 +45,7 @@ class AccountsTable extends PostgresDB {
             this.client.end();
 
             if (result.rows.length !== 0) {
-                return result.rows;
+                return result.rows[0] as Account;
             }
 
             return false;
@@ -52,7 +55,7 @@ class AccountsTable extends PostgresDB {
         }
     }
 
-    public async get(account: Account): Promise<any> {
+    public async get(account: Account): Promise<Account | false> {
         try {
             await this.client.connect();
 

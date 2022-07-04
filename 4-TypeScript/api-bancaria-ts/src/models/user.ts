@@ -4,7 +4,6 @@ interface User {
     email: string;
     birthdate: string;
     cpf: string;
-    password: string;
 }
 
 export { User };

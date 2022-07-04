@@ -9,8 +9,14 @@ class CpfValidator {
     }
 
     private validate(cpf: string): string {
-        if (cpf.length === 0) {
+        if (!cpf) {
             this.errors += 'cpf:field required|';
+
+            return '';
+        }
+
+        if (cpf.length < 11) {
+            this.errors += 'cpf:some digits are missing|';
 
             return '';
         }

@@ -1,8 +1,9 @@
 import {
     AccountNumberValidator,
-    AccountVerificationValidator,
+    AccountVerificationCodeValidator,
     AgencyCodeValidator,
     AgencyCodeVerificationValidator,
+    PasswordValidator,
 } from '.';
 import { Account } from '../../models';
 class AccountDataValidator {
@@ -10,9 +11,10 @@ class AccountDataValidator {
     public errors: string;
 
     private accountnumbervalidator = AccountNumberValidator;
-    private accountverificationvalidator = AccountVerificationValidator;
+    private accountverificationcodevalidator = AccountVerificationCodeValidator;
     private agencyCodevalidator = AgencyCodeValidator;
     private agencyCodeverificationvalidator = AgencyCodeVerificationValidator;
+    private passwordValidator = PasswordValidator;
 
     public constructor(account: Account) {
         this.errors = '';
@@ -24,7 +26,7 @@ class AccountDataValidator {
             account.account_number,
         );
         const validAccountVerificationNumber =
-            new this.accountverificationvalidator(
+            new this.accountverificationcodevalidator(
                 account.account_verification_code,
             );
         const validAgencyCode = new this.agencyCodevalidator(
@@ -34,18 +36,20 @@ class AccountDataValidator {
             new this.agencyCodeverificationvalidator(
                 account.agency_verification_code,
             );
+        const validPassword = new this.passwordValidator(account.password);
 
         this.errors = this.errors.concat(
-            `${validAccountNumber.errors}${validAccountVerificationNumber.errors}${validAgencyCode.errors}${validAgencyCodeVerification.errors}`,
+            `${validAccountNumber.errors}${validAccountVerificationNumber.errors}${validAgencyCode.errors}${validAgencyCodeVerification.errors}${validPassword.errors}`,
         );
 
         const accountData: Partial<Account> = {
             account_number: validAccountNumber.account_number,
             account_verification_code:
-                validAccountVerificationNumber.accountVerification,
+                validAccountVerificationNumber.accountVerificationCode,
             agency_number: validAgencyCode.agency_number,
             agency_verification_code:
                 validAgencyCodeVerification.agencyCodeVerification,
+            password: validPassword.password,
         };
 
         return accountData;

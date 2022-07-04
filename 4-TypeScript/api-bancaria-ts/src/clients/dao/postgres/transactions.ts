@@ -2,7 +2,10 @@ import { PostgresDB } from '.';
 import { MakeDeposit, MakeTransfer, MakeDraft } from '../../../models';
 
 class TransactionsTable extends PostgresDB {
-    public async makeDeposit(deposit: MakeDeposit, fee: string): Promise<any> {
+    public async makeDeposit(
+        deposit: MakeDeposit,
+        fee: string,
+    ): Promise<MakeDeposit | false> {
         try {
             console.log('deposit table', deposit);
             await this.client.connect();
@@ -52,7 +55,10 @@ class TransactionsTable extends PostgresDB {
         }
     }
 
-    public async makeDraft(draft: MakeDraft, fee: string): Promise<boolean> {
+    public async makeDraft(
+        draft: MakeDraft,
+        fee: string,
+    ): Promise<MakeDraft | false> {
         try {
             console.log('draft table', draft);
 
@@ -93,7 +99,7 @@ class TransactionsTable extends PostgresDB {
             console.log('result', result.rows);
 
             if (result.rows.length !== 0) {
-                return true;
+                return result.rows[0];
             }
 
             return false;
@@ -106,7 +112,7 @@ class TransactionsTable extends PostgresDB {
     public async makeTransfer(
         transfer: MakeTransfer,
         fee: string,
-    ): Promise<any> {
+    ): Promise<MakeTransfer | false> {
         try {
             console.log('transfer table', transfer);
             await this.client.connect();
@@ -156,7 +162,7 @@ class TransactionsTable extends PostgresDB {
         }
     }
 
-    public async get(id: string): Promise<any> {
+    public async get(id: string): Promise<MakeTransfer[] | false> {
         try {
             await this.client.connect();
 

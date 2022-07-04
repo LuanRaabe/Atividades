@@ -1,10 +1,4 @@
-import {
-    DateValidator,
-    EmailValidator,
-    NameValidator,
-    CpfValidator,
-    PasswordValidator,
-} from '.';
+import { DateValidator, EmailValidator, NameValidator, CpfValidator } from '.';
 import { User } from '../../models';
 
 class UserDataValidator {
@@ -15,7 +9,6 @@ class UserDataValidator {
     private nameValidator = NameValidator;
     private dateValidator = DateValidator;
     private cpfValidator = CpfValidator;
-    private passwordValidator = PasswordValidator;
 
     public constructor(user: User) {
         this.errors = '';
@@ -27,10 +20,9 @@ class UserDataValidator {
         const validName = new this.nameValidator(user.name);
         const validBirthdate = new this.dateValidator(user.birthdate);
         const validCPF = new this.cpfValidator(user.cpf);
-        const validPassword = new this.passwordValidator(user.password);
 
         this.errors = this.errors.concat(
-            `${validEmail.errors}${validName.errors}${validBirthdate.errors}${validCPF.errors}${validPassword.errors}`,
+            `${validEmail.errors}${validName.errors}${validBirthdate.errors}${validCPF.errors}`,
         );
 
         const userData: Partial<User> = {
@@ -38,7 +30,6 @@ class UserDataValidator {
             email: validEmail.email,
             name: validName.name,
             cpf: validCPF.cpf,
-            password: validPassword.password,
         };
 
         return userData;

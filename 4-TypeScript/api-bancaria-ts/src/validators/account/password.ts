@@ -14,16 +14,16 @@ class PasswordValidator {
             return '';
         }
 
-        if (password.trim().length < 5) {
+        if (password.trim().length < 8) {
             this.errors +=
-                'password:use a password with more then 5 characters|';
+                'password:use a password with minimum of 8 characters|';
 
             return '';
         }
 
-        if (password.trim().length > 10) {
+        if (password.trim().length > 20) {
             this.errors +=
-                'password:use a password with maximum of 10 characters|';
+                'password:use a password with maximum of 20 characters|';
 
             return '';
         }

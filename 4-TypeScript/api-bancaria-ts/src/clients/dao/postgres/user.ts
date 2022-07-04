@@ -2,7 +2,7 @@ import { PostgresDB } from '.';
 import { User } from '../../../models';
 
 class UsersTable extends PostgresDB {
-    public async insert(user: User): Promise<any> {
+    public async insert(user: User): Promise<User> {
         try {
             await this.client.connect();
             console.log('connected');
@@ -14,15 +14,13 @@ class UsersTable extends PostgresDB {
                     name,
                     email,
                     birthdate,
-                    password,
                     document
                 ) VALUES (
                     $1,
                     $2,
                     $3,
                     $4,
-                    $5,
-                    $6
+                    $5
                 ) RETURNING *
             `;
 
@@ -31,7 +29,6 @@ class UsersTable extends PostgresDB {
                 user.name,
                 user.email,
                 new Date(user.birthdate),
-                user.password,
                 user.cpf,
             ]);
 
@@ -39,18 +36,14 @@ class UsersTable extends PostgresDB {
 
             this.client.end();
 
-            if (result.rows.length !== 0) {
-                return result.rows;
-            }
-
-            return false;
+            return result.rows[0];
         } catch (error) {
             this.client.end();
             throw new Error('503: service temporarily unavailable');
         }
     }
 
-    public async get(user: User): Promise<any> {
+    public async get(user: User): Promise<User | false> {
         try {
             await this.client.connect();
             console.log('connected');
@@ -64,10 +57,12 @@ class UsersTable extends PostgresDB {
 
             const result = await this.client.query(getAccountQuery, [user.cpf]);
 
+            console.log('result', result.rows);
+
             this.client.end();
 
             if (result.rows.length !== 0) {
-                return result.rows;
+                return result.rows[0];
             }
 
             return false;

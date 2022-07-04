@@ -27,6 +27,16 @@ class ResponseWriter {
     ): void {
         res.status(statusCode).json(response);
     }
+
+    public static cookie(
+        res: Response,
+        statusCode: number,
+        response: APIResponse,
+    ): void {
+        res.status(statusCode)
+            .cookie('token', response.data.token)
+            .json(response);
+    }
 }
 
 export { ResponseWriter };

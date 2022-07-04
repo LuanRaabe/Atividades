@@ -30,6 +30,13 @@ class MakeDepositService {
 
             console.log('account', account);
 
+            if (!account) {
+                return {
+                    data: {},
+                    messages: ['account dosent exist'],
+                } as APIResponse;
+            }
+
             const depositValue = new this.feesValues().deposit(
                 Number(deposit.value),
             );
@@ -73,7 +80,7 @@ class MakeDepositService {
                         updated: updated.balance,
                         fee: depositValue.fee,
                     },
-                    messages: [],
+                    messages: ['deposit made successfully'],
                 } as APIResponse;
             }
 

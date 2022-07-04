@@ -14,6 +14,12 @@ class AccountNumberValidator {
             return '';
         }
 
+        if (account_number.length !== 19) {
+            this.errors += 'account_number:field must have 19 digits|';
+
+            return '';
+        }
+
         return account_number.trim();
     }
 }

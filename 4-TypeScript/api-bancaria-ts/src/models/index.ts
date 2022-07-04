@@ -8,3 +8,4 @@ export {
     MakeDraft,
 } from './transactions';
 export { Fees } from './fees';
+export { Section } from './section';

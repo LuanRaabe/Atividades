@@ -1,21 +1,27 @@
-class AccountVerificationValidator {
-    public accountVerification: string;
+class AccountVerificationCodeValidator {
+    public accountVerificationCode: string;
     public errors: string;
 
-    public constructor(accountVerification: string) {
+    public constructor(accountVerificationCode: string) {
         this.errors = '';
-        this.accountVerification = this.validate(accountVerification);
+        this.accountVerificationCode = this.validate(accountVerificationCode);
     }
 
-    private validate(accountVerification: string): string {
-        if (accountVerification.length === 0) {
-            this.errors += 'accountVerification:field required|';
+    private validate(accountVerificationCode: string): string {
+        if (!accountVerificationCode) {
+            this.errors += 'accountVerificationCode:field required|';
 
             return '';
         }
 
-        return accountVerification.trim();
+        if (accountVerificationCode.length !== 2) {
+            this.errors += 'accountVerificationCode:field must have 2 digits|';
+
+            return '';
+        }
+
+        return accountVerificationCode.trim();
     }
 }
 
-export { AccountVerificationValidator };
+export { AccountVerificationCodeValidator };

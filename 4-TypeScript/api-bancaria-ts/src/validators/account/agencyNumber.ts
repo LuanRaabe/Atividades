@@ -8,8 +8,14 @@ class AgencyCodeValidator {
     }
 
     private validate(agency_number: string): string {
-        if (agency_number.length === 0) {
+        if (!agency_number) {
             this.errors += 'agency_number:field required|';
+
+            return '';
+        }
+
+        if (agency_number.length !== 4) {
+            this.errors += 'agency_number:field must have 4 digitis|';
 
             return '';
         }

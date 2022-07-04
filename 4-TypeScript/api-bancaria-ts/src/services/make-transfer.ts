@@ -1,5 +1,5 @@
 import { APIResponse, MakeTransfer } from '../models';
-import { ExceptionTreatment, FeesValues } from '../utils';
+import { ExceptionTreatment, FeesValues, Crypto } from '../utils';
 import { AccountDataValidator } from '../validators';
 import { UpdateBalance } from '../clients/dao/postgres/updateBalance';
 import { AccountsTable } from '../clients/dao/postgres/account';
@@ -12,6 +12,7 @@ class MakeTransferService {
     private transactionsTable = TransactionsTable;
     private updateBalance = UpdateBalance;
     private feesValues = FeesValues;
+    private crypto = Crypto;
 
     public async execute(transfer: MakeTransfer): Promise<APIResponse> {
         try {
@@ -23,19 +24,9 @@ class MakeTransferService {
 
             console.log('validOriginAccountData', validOriginAccountData);
 
-            const validDestinyAccountData = new this.accountDataValidator(
-                transfer.destinyAccount,
-            );
-
-            console.log('validDestinyAccountData', validDestinyAccountData);
-
-            if (
-                validOriginAccountData.errors ||
-                validDestinyAccountData.errors
-            ) {
+            if (validOriginAccountData.errors) {
                 throw new Error(`400:
-                    ${validOriginAccountData.errors ?? ''}
-                    ${validDestinyAccountData.errors ?? ''}`);
+                    ${validOriginAccountData.errors}`);
             }
 
             const existOriginAccount = await new this.accountsTable().get(
@@ -57,6 +48,20 @@ class MakeTransferService {
                 } as APIResponse;
             }
 
+            const checkPassowrd = await new this.crypto().compare(
+                transfer.originAccount.password,
+                existOriginAccount.password,
+            );
+
+            console.log('checkPassowrd', checkPassowrd);
+
+            if (!checkPassowrd) {
+                return {
+                    data: {},
+                    messages: ['invalid password'],
+                } as APIResponse;
+            }
+
             const transferValue = new this.feesValues().transfer(
                 Number(transfer.value),
             );
@@ -68,6 +73,14 @@ class MakeTransferService {
             );
 
             console.log('originAccountBalance', originAccountBalance);
+
+            if (originAccountBalance <= 0) {
+                throw new Error('400: Account balance is zero');
+            }
+
+            if (originAccountBalance < Number(transfer.value)) {
+                throw new Error('400: Account has insuficient founds');
+            }
 
             const destinyAccountBalance = await new this.updateBalance().get(
                 existDestinyAccount,
@@ -124,7 +137,7 @@ class MakeTransferService {
                             destiny_balance: updatedDestinyAccount.balance,
                         },
                     },
-                    messages: [],
+                    messages: ['transfer successful'],
                 } as APIResponse;
             }
 

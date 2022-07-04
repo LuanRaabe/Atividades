@@ -4,3 +4,5 @@ export { GetExtractService } from './get-extract';
 export { MakeDepositService } from './make-deposit';
 export { MakeTransferService } from './make-transfer';
 export { MakeDraftService } from './make-draft';
+export { SectionService } from './section';
+export { LoginService } from './login';

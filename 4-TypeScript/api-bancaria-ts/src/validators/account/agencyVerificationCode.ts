@@ -8,8 +8,14 @@ class AgencyCodeVerificationValidator {
     }
 
     private validate(agencyCodeVerification: string): string {
-        if (agencyCodeVerification.length === 0) {
+        if (!agencyCodeVerification) {
             this.errors += 'agencyCodeVerification:field required|';
+
+            return '';
+        }
+
+        if (agencyCodeVerification.length !== 2) {
+            this.errors += 'agencyCodeVerification:field must have 2 digits|';
 
             return '';
         }

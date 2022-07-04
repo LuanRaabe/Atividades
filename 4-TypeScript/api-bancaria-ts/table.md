@@ -3,7 +3,6 @@ CREATE TABLE public.users (
 	"name" varchar(80) NOT NULL,
 	"document" varchar(11) NOT NULL,
 	"birthdate" DATE NOT NULL,
-	"password" varchar(10) NOT NULL,
 	"email" varchar(256) NOT NULL,
 	CONSTRAINT "users_pk" PRIMARY KEY ("id")
 ) WITH (
@@ -33,6 +32,7 @@ CREATE TABLE public.accounts (
 	"agency_verification_code" varchar(2) NOT NULL,
 	"account_number" varchar(20) NOT NULL,
 	"account_verification_code" varchar(2) NOT NULL,
+	"password" varchar(100) NOT NULL,
 	"balance" varchar(11) NOT NULL,
 	"user_id" varchar(40) NOT NULL,
 	CONSTRAINT "accounts_pk" PRIMARY KEY ("id")

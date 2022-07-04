@@ -15,7 +15,7 @@ class FeesValues {
     }
 
     public draft(number: number): Fees {
-        return { value: number - this.fees.draft, fee: this.fees.draft };
+        return { value: number + this.fees.draft, fee: this.fees.draft };
     }
 
     public transfer(number: number): Fees {
