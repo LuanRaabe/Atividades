@@ -1,7 +1,7 @@
 import { User } from '../models';
 import { ExceptionTreatment } from '../utils';
 import { UserDataValidator } from '../validators';
-import { UsersTable } from '../clients/dao/postgres/user';
+import { UsersTable } from '../clients/dao/postgres';
 import { v4 } from 'uuid';
 
 class CreateUserService {
@@ -20,7 +20,7 @@ class CreateUserService {
                 throw new Error(`400: ${validUserData.errors}`);
             }
 
-            const existUser = await new this.usersTable().get(user);
+            const existUser = await new this.usersTable().get(user.cpf);
 
             console.log('existUser', existUser);
 

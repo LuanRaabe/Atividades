@@ -1,8 +1,8 @@
 import { CreateUserService } from '.';
 import { APIResponse, Account, User } from '../models';
 import { ExceptionTreatment, Crypto } from '../utils';
-import { AccountDataValidator } from '../validators';
-import { AccountsTable } from '../clients/dao/postgres/account';
+import { AccountDataValidator, PasswordValidator } from '../validators';
+import { AccountsTable } from '../clients/dao/postgres';
 import { GenerateAccountData } from '../utils/generate-account-data';
 import { v4 } from 'uuid';
 class CreateAccountService {
@@ -11,6 +11,7 @@ class CreateAccountService {
     private accountsTable = AccountsTable;
     private generateAccountData = GenerateAccountData;
     private crypto = Crypto;
+    private passwordValidator = PasswordValidator;
 
     public async execute(user: User & Account): Promise<APIResponse> {
         try {
@@ -22,6 +23,14 @@ class CreateAccountService {
             let newAccount = await new this.generateAccountData().execute(
                 newUser.id,
             );
+
+            const validPasswod = new this.passwordValidator(user.password);
+
+            console.log('validPasswod', validPasswod);
+
+            if (validPasswod.errors) {
+                throw new Error(`400: ${validPasswod.errors}`);
+            }
 
             newAccount.password = user.password;
 
@@ -55,7 +64,15 @@ class CreateAccountService {
 
             if (insertedAccount) {
                 return {
-                    data: insertedAccount,
+                    data: {
+                        user: {
+                            name: user.name,
+                            email: user.email,
+                            birthdate: user.birthdate,
+                            cpf: user.cpf,
+                        },
+                        account: insertedAccount,
+                    },
                     messages: ['account created successfully'],
                 } as APIResponse;
             }

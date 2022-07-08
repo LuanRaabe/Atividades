@@ -1,9 +1,12 @@
 import { APIResponse, MakeDeposit } from '../models';
 import { ExceptionTreatment, FeesValues } from '../utils';
 import { AccountDataValidator } from '../validators';
-import { UpdateBalance } from '../clients/dao/postgres/updateBalance';
-import { AccountsTable } from '../clients/dao/postgres/account';
-import { TransactionsTable } from '../clients/dao/postgres/transactions';
+import {
+    UpdateBalance,
+    AccountsTable,
+    TransactionsTable,
+    UsersTable,
+} from '../clients/dao/postgres';
 import { v4 } from 'uuid';
 
 class MakeDepositService {
@@ -11,6 +14,7 @@ class MakeDepositService {
     private feesValues = FeesValues;
     private accountsTable = AccountsTable;
     private transactionsTable = TransactionsTable;
+    private usersTable = UsersTable;
     private updateBalance = UpdateBalance;
 
     public async execute(deposit: MakeDeposit): Promise<APIResponse> {
@@ -37,6 +41,24 @@ class MakeDepositService {
                 } as APIResponse;
             }
 
+            const user = await new this.usersTable().get(deposit.cpf);
+
+            console.log('user', user);
+
+            if (!user) {
+                return {
+                    data: {},
+                    messages: ['user dosent exist'],
+                } as APIResponse;
+            }
+
+            if (user.id !== account.user_id) {
+                return {
+                    data: {},
+                    messages: ['cpf dosent correspond to account'],
+                } as APIResponse;
+            }
+
             const depositValue = new this.feesValues().deposit(
                 Number(deposit.value),
             );
@@ -58,7 +80,8 @@ class MakeDepositService {
             const validDeposit: MakeDeposit = {
                 id: v4(),
                 account: account,
-                value: depositValue.value.toString(),
+                cpf: user.cpf,
+                value: deposit.value.toString(),
                 type: 'deposit',
                 date: new Date().toString(),
             };
@@ -76,8 +99,22 @@ class MakeDepositService {
             if (insertedTransaction) {
                 return {
                     data: {
-                        validDeposit: validDeposit.account.account_number,
-                        updated: updated.balance,
+                        deposit: {
+                            id: validDeposit.id,
+                            value: validDeposit.value,
+                            type: validDeposit.type,
+                            date: validDeposit.date,
+                            account: {
+                                agency_number: account.agency_number,
+                                agency_verification_code:
+                                    account.agency_verification_code,
+                                account_number: account.account_number,
+                                account_verification_code:
+                                    account.account_verification_code,
+                                balance: account.balance.toString(),
+                            },
+                        },
+                        updatedBalance: updated.balance,
                         fee: depositValue.fee,
                     },
                     messages: ['deposit made successfully'],

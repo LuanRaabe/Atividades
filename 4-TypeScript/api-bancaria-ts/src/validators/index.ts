@@ -1,2 +1,2 @@
 export { UserDataValidator } from './user';
-export { AccountDataValidator } from './account';
+export { AccountDataValidator, PasswordValidator } from './account';

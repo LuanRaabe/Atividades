@@ -1,9 +1,12 @@
 import { APIResponse, MakeTransfer } from '../models';
 import { ExceptionTreatment, FeesValues, Crypto } from '../utils';
-import { AccountDataValidator } from '../validators';
-import { UpdateBalance } from '../clients/dao/postgres/updateBalance';
-import { AccountsTable } from '../clients/dao/postgres/account';
-import { TransactionsTable } from '../clients/dao/postgres/transactions';
+import { AccountDataValidator, PasswordValidator } from '../validators';
+import {
+    UpdateBalance,
+    AccountsTable,
+    TransactionsTable,
+    UsersTable,
+} from '../clients/dao/postgres';
 import { v4 } from 'uuid';
 
 class MakeTransferService {
@@ -13,6 +16,8 @@ class MakeTransferService {
     private updateBalance = UpdateBalance;
     private feesValues = FeesValues;
     private crypto = Crypto;
+    private passwordValidator = PasswordValidator;
+    private usersTable = UsersTable;
 
     public async execute(transfer: MakeTransfer): Promise<APIResponse> {
         try {
@@ -22,11 +27,31 @@ class MakeTransferService {
                 transfer.originAccount,
             );
 
+            const validPasswod = new this.passwordValidator(
+                transfer.originAccount.password,
+            );
+
+            console.log('validPasswod', validPasswod);
+
+            if (validPasswod.errors) {
+                throw new Error(`400: ${validPasswod.errors}`);
+            }
+
             console.log('validOriginAccountData', validOriginAccountData);
 
-            if (validOriginAccountData.errors) {
+            const validDestinyAccountData = new this.accountDataValidator(
+                transfer.destinyAccount,
+            );
+
+            console.log('validDestinyAccountData', validDestinyAccountData);
+
+            if (
+                validOriginAccountData.errors ||
+                validDestinyAccountData.errors
+            ) {
                 throw new Error(`400:
-                    ${validOriginAccountData.errors}`);
+                    ${validOriginAccountData.errors ?? ''}
+                    ${validDestinyAccountData.errors ?? ''}`);
             }
 
             const existOriginAccount = await new this.accountsTable().get(
@@ -45,6 +70,48 @@ class MakeTransferService {
                 return {
                     data: {},
                     messages: ['one of the accounts dosent exist'],
+                } as APIResponse;
+            }
+
+            const originUser = await new this.usersTable().get(
+                transfer.originAccountCPF,
+            );
+
+            console.log('originUser', originUser);
+
+            if (!originUser) {
+                return {
+                    data: {},
+                    messages: ['originUser dosent exist'],
+                } as APIResponse;
+            }
+
+            if (originUser.id !== existOriginAccount.user_id) {
+                console.log(originUser.id, existOriginAccount.user_id);
+                return {
+                    data: {},
+                    messages: ['cpf dosent correspond to origin account'],
+                } as APIResponse;
+            }
+
+            const destinyUser = await new this.usersTable().get(
+                transfer.destinyAccountCPF,
+            );
+
+            console.log('destinyUser', destinyUser);
+
+            if (!destinyUser) {
+                return {
+                    data: {},
+                    messages: ['destinyUser dosent exist'],
+                } as APIResponse;
+            }
+
+            if (destinyUser.id !== existDestinyAccount.user_id) {
+                console.log(destinyUser.id, existDestinyAccount.user_id);
+                return {
+                    data: {},
+                    messages: ['cpf dosent correspond to destiny account'],
                 } as APIResponse;
             }
 
@@ -107,7 +174,9 @@ class MakeTransferService {
             const validTransfer: MakeTransfer = {
                 id: v4(),
                 originAccount: existOriginAccount,
+                originAccountCPF: transfer.originAccountCPF,
                 destinyAccount: existDestinyAccount,
+                destinyAccountCPF: transfer.destinyAccountCPF,
                 value: transfer.value,
                 type: 'transfer',
                 date: new Date().toString(),
@@ -124,18 +193,45 @@ class MakeTransferService {
             console.log('insertedTransaction', insertedTransaction);
 
             if (insertedTransaction) {
+                console.log('aqui');
                 return {
                     data: {
-                        validTransfer: {
+                        transfer: {
+                            id: validTransfer.id,
                             value: validTransfer.value,
-                            fee: transferValue.fee,
                             type: validTransfer.type,
                             date: validTransfer.date,
+                            originAccount: {
+                                cpf: validTransfer.originAccountCPF,
+                                agency_number:
+                                    validTransfer.originAccount.agency_number,
+                                agency_verification_code:
+                                    validTransfer.originAccount
+                                        .agency_verification_code,
+                                account_number:
+                                    validTransfer.originAccount.account_number,
+                                account_verification_code:
+                                    validTransfer.originAccount
+                                        .account_verification_code,
+                                balance:
+                                    validTransfer.originAccount.balance.toString(),
+                            },
+                            destinyAccount: {
+                                cpf: validTransfer.destinyAccountCPF,
+                                agency_number:
+                                    validTransfer.destinyAccount.agency_number,
+                                agency_verification_code:
+                                    validTransfer.destinyAccount
+                                        .agency_verification_code,
+                                account_number:
+                                    validTransfer.destinyAccount.account_number,
+                                account_verification_code:
+                                    validTransfer.destinyAccount
+                                        .account_verification_code,
+                            },
                         },
-                        updated: {
-                            origin_balance: updatedOriginAccount.balance,
-                            destiny_balance: updatedDestinyAccount.balance,
-                        },
+                        updatedBalance: updatedOriginAccount.balance,
+                        fee: transferValue.fee,
                     },
                     messages: ['transfer successful'],
                 } as APIResponse;

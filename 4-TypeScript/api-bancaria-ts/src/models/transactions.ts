@@ -2,11 +2,13 @@ import { Account } from '.';
 
 interface GetExtract {
     account: Account;
+    cpf: string;
 }
 
 interface MakeDeposit {
     id: string;
     account: Account;
+    cpf: string;
     value: string;
     type: string;
     date: string;
@@ -15,7 +17,9 @@ interface MakeDeposit {
 interface MakeTransfer {
     id: string;
     originAccount: Account;
+    originAccountCPF: string;
     destinyAccount: Account;
+    destinyAccountCPF: string;
     value: string;
     type: string;
     date: string;
@@ -24,6 +28,7 @@ interface MakeTransfer {
 interface MakeDraft {
     id: string;
     account: Account;
+    cpf: string;
     value: string;
     type: string;
     date: string;

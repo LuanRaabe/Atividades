@@ -1,7 +1,7 @@
 import { APIResponse, Account, Section } from '../models';
 import { ExceptionTreatment, Crypto } from '../utils';
 import { AccountDataValidator } from '../validators';
-import { AccountsTable } from '../clients/dao/postgres/account';
+import { AccountsTable } from '../clients/dao/postgres';
 import { SectionService } from '.';
 
 class LoginService {

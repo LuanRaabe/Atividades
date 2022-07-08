@@ -15,3 +15,7 @@ class PostgresDB {
 }
 
 export { PostgresDB };
+export { AccountsTable } from './account';
+export { UsersTable } from './user';
+export { TransactionsTable } from './transactions';
+export { UpdateBalance } from './updateBalance';

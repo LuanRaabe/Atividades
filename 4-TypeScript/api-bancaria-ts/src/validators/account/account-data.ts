@@ -3,7 +3,6 @@ import {
     AccountVerificationCodeValidator,
     AgencyCodeValidator,
     AgencyCodeVerificationValidator,
-    PasswordValidator,
 } from '.';
 import { Account } from '../../models';
 class AccountDataValidator {
@@ -14,7 +13,6 @@ class AccountDataValidator {
     private accountverificationcodevalidator = AccountVerificationCodeValidator;
     private agencyCodevalidator = AgencyCodeValidator;
     private agencyCodeverificationvalidator = AgencyCodeVerificationValidator;
-    private passwordValidator = PasswordValidator;
 
     public constructor(account: Account) {
         this.errors = '';
@@ -36,10 +34,9 @@ class AccountDataValidator {
             new this.agencyCodeverificationvalidator(
                 account.agency_verification_code,
             );
-        const validPassword = new this.passwordValidator(account.password);
 
         this.errors = this.errors.concat(
-            `${validAccountNumber.errors}${validAccountVerificationNumber.errors}${validAgencyCode.errors}${validAgencyCodeVerification.errors}${validPassword.errors}`,
+            `${validAccountNumber.errors}${validAccountVerificationNumber.errors}${validAgencyCode.errors}${validAgencyCodeVerification.errors}`,
         );
 
         const accountData: Partial<Account> = {
@@ -49,7 +46,6 @@ class AccountDataValidator {
             agency_number: validAgencyCode.agency_number,
             agency_verification_code:
                 validAgencyCodeVerification.agencyCodeVerification,
-            password: validPassword.password,
         };
 
         return accountData;

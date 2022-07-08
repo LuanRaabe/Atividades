@@ -43,7 +43,7 @@ class UsersTable extends PostgresDB {
         }
     }
 
-    public async get(user: User): Promise<User | false> {
+    public async get(cpf: string): Promise<User | false> {
         try {
             await this.client.connect();
             console.log('connected');
@@ -55,7 +55,7 @@ class UsersTable extends PostgresDB {
                 document = $1
             `;
 
-            const result = await this.client.query(getAccountQuery, [user.cpf]);
+            const result = await this.client.query(getAccountQuery, [cpf]);
 
             console.log('result', result.rows);
 

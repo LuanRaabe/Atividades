@@ -1,52 +1,77 @@
-import { APIResponse, Account } from '../models';
+import { APIResponse, Account, GetExtract } from '../models';
 import { ExceptionTreatment, ShowExtract } from '../utils';
 import { AccountDataValidator } from '../validators';
-import { AccountsTable } from '../clients/dao/postgres/account';
-import { TransactionsTable } from '../clients/dao/postgres/transactions';
+import {
+    AccountsTable,
+    TransactionsTable,
+    UsersTable,
+} from '../clients/dao/postgres';
 class GetExtractService {
     private accountDataValidator = AccountDataValidator;
     private accountsTable = AccountsTable;
     private transactionsTable = TransactionsTable;
+    private usersTable = UsersTable;
     private showExtract = ShowExtract;
 
-    public async execute(account: Account): Promise<APIResponse> {
+    public async execute(extract: GetExtract): Promise<APIResponse> {
         try {
-            console.log('account', account);
-            const validAccountData = new this.accountDataValidator(account);
+            console.log('extract', extract);
+            const validAccountData = new this.accountDataValidator(
+                extract.account,
+            );
             console.log('validAccountData', validAccountData);
             if (validAccountData.errors) {
                 throw new Error(`400: ${validAccountData.errors}`);
             }
 
-            const accountExtract = await new this.accountsTable().get(
+            const account = await new this.accountsTable().get(
                 validAccountData.account as Account,
             );
 
-            console.log('accountExtract', accountExtract);
+            console.log('account', account);
 
-            if (!accountExtract) {
+            if (!account) {
                 return {
                     data: {},
                     messages: ['account dosent exist'],
                 } as APIResponse;
             }
 
-            const extract = await new this.transactionsTable().get(
-                accountExtract.id,
+            const user = await new this.usersTable().get(extract.cpf);
+
+            console.log('user', user);
+
+            if (!user) {
+                return {
+                    data: {},
+                    messages: ['user dosent exist'],
+                } as APIResponse;
+            }
+
+            if (user.id !== account.user_id) {
+                console.log(user.id, account.user_id);
+                return {
+                    data: {},
+                    messages: ['cpf dosent correspond to account'],
+                } as APIResponse;
+            }
+
+            const actualExtract = await new this.transactionsTable().get(
+                account.id,
             );
 
             console.log('extract', extract);
 
-            if (extract) {
+            if (actualExtract) {
                 return {
                     data: {
-                        accountId: accountExtract.id,
+                        accountId: account.id,
                         extract: new this.showExtract().execute(
-                            accountExtract.id,
-                            extract,
+                            account.id,
+                            actualExtract,
                         ),
                     },
-                    messages: [`You have ${extract.length} transactions`],
+                    messages: [`You have ${actualExtract.length} transactions`],
                 } as APIResponse;
             }
 

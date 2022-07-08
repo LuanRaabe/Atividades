@@ -1,9 +1,12 @@
 import { APIResponse, MakeDraft } from '../models';
 import { ExceptionTreatment, FeesValues, Crypto } from '../utils';
-import { AccountDataValidator } from '../validators';
-import { UpdateBalance } from '../clients/dao/postgres/updateBalance';
-import { AccountsTable } from '../clients/dao/postgres/account';
-import { TransactionsTable } from '../clients/dao/postgres/transactions';
+import { AccountDataValidator, PasswordValidator } from '../validators';
+import {
+    UpdateBalance,
+    AccountsTable,
+    TransactionsTable,
+    UsersTable,
+} from '../clients/dao/postgres';
 import { v4 } from 'uuid';
 
 class MakeDraftService {
@@ -13,6 +16,8 @@ class MakeDraftService {
     private transactionsTable = TransactionsTable;
     private updateBalance = UpdateBalance;
     private crypto = Crypto;
+    private usersTable = UsersTable;
+    private passwordValidator = PasswordValidator;
 
     public async execute(draft: MakeDraft): Promise<APIResponse> {
         try {
@@ -37,6 +42,34 @@ class MakeDraftService {
                     data: {},
                     messages: ['account dosent exist'],
                 } as APIResponse;
+            }
+
+            const user = await new this.usersTable().get(draft.cpf);
+
+            console.log('user', user);
+
+            if (!user) {
+                return {
+                    data: {},
+                    messages: ['user dosent exist'],
+                } as APIResponse;
+            }
+
+            if (user.id !== account.user_id) {
+                return {
+                    data: {},
+                    messages: ['cpf dosent correspond to account'],
+                } as APIResponse;
+            }
+
+            const validPasswod = new this.passwordValidator(
+                draft.account.password,
+            );
+
+            console.log('validPasswod', validPasswod);
+
+            if (validPasswod.errors) {
+                throw new Error(`400: ${validPasswod.errors}`);
             }
 
             const checkPassowrd = await new this.crypto().compare(
@@ -84,7 +117,8 @@ class MakeDraftService {
             const validDraft: MakeDraft = {
                 id: v4(),
                 account: account,
-                value: draftValue.value.toString(),
+                cpf: draft.cpf,
+                value: draft.value.toString(),
                 type: 'draft',
                 date: new Date().toString(),
             };
@@ -102,8 +136,22 @@ class MakeDraftService {
             if (insertedTransaction) {
                 return {
                     data: {
-                        validDeposit: validDraft.account.account_number,
-                        updated: updated.balance,
+                        draft: {
+                            id: validDraft.id,
+                            value: validDraft.value,
+                            type: validDraft.type,
+                            date: validDraft.date,
+                            account: {
+                                agency_number: account.agency_number,
+                                agency_verification_code:
+                                    account.agency_verification_code,
+                                account_number: account.account_number,
+                                account_verification_code:
+                                    account.account_verification_code,
+                                balance: account.balance.toString(),
+                            },
+                        },
+                        updatedBalance: updated.balance,
                         fee: draftValue.fee,
                     },
                     messages: ['draft made successfully'],
