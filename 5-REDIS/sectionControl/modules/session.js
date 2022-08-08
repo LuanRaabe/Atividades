@@ -6,15 +6,23 @@ const {
   RDfailLogin,
   RDaddToCart,
   RDgetCart,
+  RDcheckLOgin,
 } = require("./redis");
 const { haveCookie, setCookie, getCookie, addToCart } = require("./cookie");
 
 async function handleLogin(req, res) {
-  await haveCookie(req, res, "session");
+  const haveCookieSet = await haveCookie(req, res, "session");
+  if (haveCookieSet) return;
   const { username, password } = req.params;
   const isLogged = await RDisLogged(username, password);
   if (isLogged) {
     await setCookie(req, res, "session", isLogged);
+    return;
+  }
+  const RDcheckPassword = await RDcheckLOgin(username, password);
+  if (RDcheckPassword) {
+    setCookie(req, res, "session", `login-${data.username}-${data.password}`);
+    return;
   }
   const { message, data } = await PGloginAccount(username, password);
   if (message === "logged account") {
@@ -50,8 +58,11 @@ async function handleCreateAccount(req, res) {
 }
 
 async function handleLogout(req, res) {
-  const data = await getCookie(req, res, "session").split("-");
+  let data = await getCookie(req, res, "session");
+  if (data) data = data.split("-");
+  else return;
   await RDlogout(data[1], data[2]);
+  res.clearCookie("session");
 }
 
 async function handleShop(req, res) {
@@ -62,11 +73,15 @@ async function handleShop(req, res) {
 }
 
 async function getCart(req, res) {
-  const data = await getCookie(req, res, "products").split("--");
-  if (data) return data;
+  let response = [];
 
-  const RDcart = await RDgetCart(req, res, "products").split("--");
-  if (RDcart) return RDcart;
+  let data = await getCookie(req, res, "products");
+  if (data) response = data.split("--");
+  else {
+    let RDcart = await RDgetCart(req, res, "products");
+    if (RDcart) response = RDcart.split("--");
+  }
+  res.json(response);
 }
 
 module.exports = {

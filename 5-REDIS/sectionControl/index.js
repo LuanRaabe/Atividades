@@ -19,9 +19,7 @@ app.get("/login/:username/:password", async (req, res) =>
   handleLogin(req, res)
 );
 
-app.get("/logout/:username/:password", async (req, res) =>
-  handleLogout(req, res)
-);
+app.get("/logout", async (req, res) => handleLogout(req, res));
 
 app.get("/shop", async (req, res) => getCart(req, res));
 

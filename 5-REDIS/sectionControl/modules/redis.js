@@ -7,9 +7,11 @@ RDclient.on("error", (err) => {
 
 async function RDset(key, value, time) {
   try {
-    await RDclient.set(key, value, "EX", time);
+    const seted = await RDclient.set(key, value, "EX", time);
+    return seted;
   } catch (e) {
     console.log(e);
+    return false;
   }
 }
 
@@ -19,6 +21,7 @@ async function RDget(key) {
     return result;
   } catch (e) {
     console.log(e);
+    return false;
   }
 }
 
@@ -28,6 +31,7 @@ async function RDdel(key) {
     return result;
   } catch (e) {
     console.log(e);
+    return false;
   }
 }
 
@@ -37,63 +41,79 @@ async function RDgetTtl(key) {
     return result;
   } catch (e) {
     console.log(e);
+    return false;
   }
 }
 
 async function RDisLogged(username, password) {
   try {
-    const result = await RDget(`login-${username}-${password}`);
+    const result = await RDget(`login-${username}`);
     return result;
   } catch (e) {
     console.log(e);
+    return false;
   }
 }
 
 async function RDlogin(username, password) {
   try {
-    let result = await RDget(`login-${username}-${password}`);
-    if (!result)
-      result = await RDset(`login-${username}-${password}`, `logged`, 3600);
+    let result = await RDget(`login-${username}`);
+    if (!result) result = await RDset(`login-${username}`, password, 3600);
     return result;
   } catch (e) {
     console.log(e);
+    return false;
+  }
+}
+
+async function RDcheckLOgin(username, password) {
+  try {
+    const result = await RDget(`login-${username}`);
+    if (result === password) return true;
+    return false;
+  } catch (e) {
+    console.log(e);
+    return false;
   }
 }
 
 async function RDlogout(username, password) {
   try {
-    const result = await RDdel(`login-${username}-${password}`);
+    const result = await RDdel(`login-${username}`);
     return result;
   } catch (e) {
     console.log(e);
+    return false;
   }
 }
 
 async function RDfailLogin(username, password) {
   try {
     let number = 0;
-    const numFails = await RDget(`fail-${username}-${password}`);
+    const numFails = await RDget(`fail-${username}`);
     number = (numFails ? parseInt(numFails) : number) + 1;
     if (numFails === 3) {
       let awaitTime = await RDgetAwait(username, password);
       if (awaitTime) return awaitTime;
 
-      awaitTime = await RDset(`await-${username}-${password}`, `awaiting`, 30);
+      awaitTime = await RDset(`await-${username}`, `awaiting`, 30);
       return awaitTime;
     }
-    const result = await RDset(`fail-${username}-${password}`, number, 15);
+    const result = await RDset(`fail-${username}`, number, 15);
     return result;
   } catch (e) {
     console.log(e);
+    return false;
   }
 }
 
 async function RDgetAwait(username, password) {
   try {
-    const result = await RDgetTtl(`await-${username}-${password}`);
+    const result = await RDgetTtl(`await-${username}`);
     return result;
   } catch (e) {
     console.log(e);
+    return false;
   }
 }
 
@@ -102,19 +122,21 @@ async function RDaddToCart(username, password, product, number) {
     const data = await RDgetCart(req, res, "products").split("--");
     const array = [...data];
     array.push(`${product}-${number}`);
-    const result = await RDset(`cart-${username}-${password}`, array, 3600);
+    const result = await RDset(`cart-${username}`, array, 3600);
     return result;
   } catch (e) {
     console.log(e);
+    return false;
   }
 }
 
 async function RDgetCart(username, password) {
   try {
-    const result = await RDget(`cart-${username}-${password}`);
+    const result = await RDget(`cart-${username}`);
     return result;
   } catch (e) {
     console.log(e);
+    return false;
   }
 }
 
@@ -122,6 +144,7 @@ module.exports = {
   RDisLogged,
   RDlogin,
   RDlogout,
+  RDcheckLOgin,
   RDfailLogin,
   RDaddToCart,
   RDgetCart,

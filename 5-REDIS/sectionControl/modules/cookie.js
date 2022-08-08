@@ -3,7 +3,7 @@ async function haveCookie(req, res, cookie) {
   if (key) {
     console.log("Ja havia cookie", key);
     res.redirect("/shop");
-    return;
+    return true;
   }
   return false;
 }
@@ -11,15 +11,14 @@ async function haveCookie(req, res, cookie) {
 async function getCookie(req, res, cookie) {
   const key = req.cookies[cookie];
   if (key) {
-    res.cookie(key, cookie);
-    return;
+    return key;
   }
   return false;
 }
 
 async function setCookie(req, res, key, value) {
   console.log("Logado no redis mas sem cookie");
-  console.log(isLogged);
+  console.log(value);
   res
     .cookie(key, value, {
       maxAge: 3600000,
